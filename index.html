@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Optimization Meta Tags -->
+    <title>MEJT | Official Minecraft Server & Gaming Community</title>
+    <meta name="description" content="Join MEJT - The ultimate high-performance Minecraft community server. Featuring custom plugins, Bedwars, whitelist access, VIP ranks, and active gaming nights.">
+    <meta name="keywords" content="MEJT, Minecraft Server, Bedwars, Minecraft Community, MEJT Minecraft, Minecraft VIP, Custom Plugins">
+    <meta name="author" content="MEJT Server Team">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph for Discord / Social Media Previews -->
+    <meta property="og:title" content="MEJT - Next-Gen Minecraft Server">
+    <meta property="og:description" content="Enter the realm of MEJT. Custom gameplay, friendly community, and epic events. Get on the Whitelist now!">
+    <meta property="og:image" content="https://raw.githubusercontent.com/mejt-server/logo/main/logo.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           AAA GAMING DARK MODE STYLES & NEON PALETTE
+           ========================================================================== */
+        :root {
+            --bg-dark: #07080c;
+            --bg-card: rgba(18, 20, 29, 0.75);
+            --magenta-glow: #ff00ff;
+            --magenta-dark: #d81b60;
+            --neon-blue: #00a2ff;
+            --neon-orange: #ff8c00;
+            --neon-yellow: #ffd700;
+            --neon-green: #2ecc71;
+            --text-main: #f0f4f8;
+            --text-muted: #94a3b8;
+            --border-glow: rgba(255, 0, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Canvas Particle Background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* UI Wrapper */
+        .page-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==========================================================================
+           NAVIGATION BAR
+           ========================================================================== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            border: 2px solid var(--magenta-glow);
+            box-shadow: 0 0 15px var(--magenta-glow);
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        .brand-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .brand-title span:nth-child(1) { color: var(--neon-orange); }
+        .brand-title span:nth-child(2) { color: var(--neon-blue); }
+        .brand-title span:nth-child(3) { color: var(--neon-yellow); }
+        .brand-title span:nth-child(4) { color: var(--neon-green); }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--magenta-glow);
+            text-shadow: 0 0 10px var(--magenta-glow);
+        }
+
+        .btn-nav {
+            background: linear-gradient(135deg, var(--magenta-glow), var(--magenta-dark));
+            color: #fff !important;
+            padding: 10px 22px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.7);
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 80vh;
+            padding: 60px 0;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 0, 255, 0.1);
+            border: 1px solid var(--magenta-glow);
+            color: var(--magenta-glow);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-title span {
+            color: var(--magenta-glow);
+            -webkit-text-fill-color: var(--magenta-glow);
+            text-shadow: 0 0 20px var(--magenta-glow);
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 35px;
+            max-width: 540px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--magenta-glow), #9d00ff);
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            padding: 16px 36px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--neon-blue);
+            color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 162, 255, 0.4);
+        }
+
+        .hero-media {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .mascot-card {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            background: var(--bg-card);
+            border: 2px solid var(--border-glow);
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 50px rgba(255, 0, 255, 0.2);
+            backdrop-filter: blur(15px);
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .mascot-img {
+            width: 85%;
+            height: auto;
+            filter: drop-shadow(0 0 20px var(--magenta-glow));
+            transition: transform 0.5s ease;
+        }
+
+        .mascot-card:hover .mascot-img {
+            transform: scale(1.08) rotate(2deg);
+        }
+
+        /* Server IP Copy Box */
+        .server-ip-card {
+            margin: 40px 0 80px 0;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 25px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .ip-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .ip-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .ip-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--magenta-glow);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ip-box:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .ip-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: var(--neon-yellow);
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           REDEEM COUPON SECTION
+           ========================================================================== */
+        .section-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+
+        .redeem-container {
+            background: linear-gradient(145deg, rgba(20, 22, 35, 0.9), rgba(10, 11, 18, 0.9));
+            border: 2px solid var(--border-glow);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 650px;
+            margin: 0 auto 100px auto;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.15);
+            backdrop-filter: blur(15px);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 16px 20px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.05rem;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--magenta-glow);
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+        }
+
+        .btn-redeem {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.1rem;
+        }
+
+        /* Result Alert Message */
+        #redeem-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .alert-success {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+        }
+
+        .alert-error {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            color: #e74c3c;
+        }
+
+        /* ==========================================================================
+           VIP / MVP RANKS DISPLAY
+           ========================================================================== */
+        .ranks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .rank-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--magenta-glow);
+            box-shadow: 0 0 35px rgba(255, 0, 255, 0.3);
+        }
+
+        .rank-card.mvp {
+            border-color: var(--neon-blue);
+        }
+
+        .rank-card.mvp:hover {
+            box-shadow: 0 0 35px rgba(0, 162, 255, 0.4);
+        }
+
+        .rank-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .rank-card.vip .rank-title { color: var(--neon-yellow); }
+        .rank-card.mvp .rank-title { color: var(--neon-blue); }
+
+        .rank-features {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .rank-features li {
+            padding: 8px 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rank-features li::before {
+            content: "✓";
+            color: var(--neon-green);
+            font-weight: bold;
+        }
+
+        /* ==========================================================================
+           ANIMATIONS & FOOTER
+           ========================================================================== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px var(--magenta-glow); }
+            100% { box-shadow: 0 0 25px var(--magenta-glow), 0 0 40px var(--magenta-dark); }
+        }
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--magenta-glow);
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--magenta-glow);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 9999;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-subtitle {
+                margin: 0 auto 35px auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .server-ip-card {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Particle Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="page-container">
+        <!-- Navigation -->
+        <header>
+            <a href="#" class="brand">
+                <img src="https://raw.githubusercontent.com/mejt-server/logo/main/logo.jpg" alt="MEJT Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/50/FF00FF/ffffff?text=MEJT'">
+                <div class="brand-title">
+                    <span>M</span><span>E</span><span>J</span><span>T</span>
+                </div>
+            </a>
+            <nav>
+                <a href="#about">Home</a>
+                <a href="#ranks">Ranks</a>
+                <a href="#redeem">Redeem Code</a>
+                <a href="https://sites.google.com/view/mejt-minecraftserver/agbs" target="_blank">Rules</a>
+                <a href="https://discord.gg/YOUR-DISCORD-LINK" class="btn-nav" target="_blank">Discord</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <div class="hero-content">
+                <div class="badge">🚀 Official MEJT Network</div>
+                <h1 class="hero-title">NEXT-GEN <span>MINECRAFT</span> EXPERIENCE</h1>
+                <p class="hero-subtitle">
+                    Dive into our custom-built Minecraft realm featuring Bedwars, custom plugins, active events, and a vibrant gaming community.
+                </p>
+                <div class="hero-actions">
+                    <a href="#redeem" class="btn-primary">Redeem VIP Code</a>
+                    <a href="https://discord.gg/YOUR-DISCORD-LINK" class="btn-secondary" target="_blank">Join Discord</a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <div class="mascot-card">
+                    <img src="https://raw.githubusercontent.com/mejt-server/logo/main/logo.jpg" alt="MEJT Allay Mascot" class="mascot-img" onerror="this.src='https://via.placeholder.com/300/FF00FF/ffffff?text=MEJT+Allay'">
+                </div>
+            </div>
+        </section>
+
+        <!-- Server IP Quick Bar -->
+        <div class="server-ip-card">
+            <div class="ip-info">
+                <h3>SERVER ADDRESS</h3>
+                <p>Click to copy the IP and start playing!</p>
+            </div>
+            <div class="ip-box" onclick="copyIP('mc.mejt.de')">
+                <span class="ip-text" id="ip-display">mc.mejt.de</span>
+                <span style="color: var(--text-muted); font-size: 0.8rem;">[COPY]</span>
+            </div>
+        </div>
+
+        <!-- Ranks Overview -->
+        <section id="ranks">
+            <h2 class="section-title">SERVER RANKS</h2>
+            <p class="section-subtitle">Unlock special perks, prefix tags, and unique abilities!</p>
+            
+            <div class="ranks-grid">
+                <div class="rank-card vip">
+                    <div class="rank-title">VIP</div>
+                    <p style="color: var(--text-muted);">For true community supporters</p>
+                    <ul class="rank-features">
+                        <li>Gold [VIP] Chat Prefix</li>
+                        <li>Priority Server Queue Access</li>
+                        <li>Custom Particle Effects</li>
+                        <li>Exclusive VIP Discord Role</li>
+                    </ul>
+                    <a href="#redeem" class="btn-secondary" style="display: inline-block; width: 100%;">Use Code</a>
+                </div>
+
+                <div class="rank-card mvp">
+                    <div class="rank-title">MVP</div>
+                    <p style="color: var(--text-muted);">The ultimate elite status</p>
+                    <ul class="rank-features">
+                        <li>Diamond [MVP] Animated Tag</li>
+                        <li>All VIP Perks included</li>
+                        <li>Nick Command Access</li>
+                        <li>Exclusive MVP Lounge & Voice</li>
+                    </ul>
+                    <a href="#redeem" class="btn-primary" style="display: inline-block; width: 100%;">Use Code</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Redeem Coupon Code Section -->
+        <section id="redeem">
+            <h2 class="section-title">REDEEM YOUR CODE</h2>
+            <p class="section-subtitle">Got a VIP or MVP voucher code? Claim it below!</p>
+
+            <div class="redeem-container">
+                <form id="coupon-form">
+                    <div class="form-group">
+                        <label for="mc-username">Minecraft Username</label>
+                        <input type="text" id="mc-username" class="form-control" placeholder="e.g. Steve123" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="coupon-code">Gutschein Code</label>
+                        <input type="text" id="coupon-code" class="form-control" placeholder="Enter code (e.g. MEJT-VIP-2026)" required style="text-transform: uppercase;">
+                    </div>
+                    <button type="submit" class="btn-primary btn-redeem">ACTIVATE CODE NOW</button>
+                </form>
+
+                <div id="redeem-message"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 MEJT Minecraft Network. Not affiliated with Mojang Studios.</p>
+            <p style="margin-top: 10px;">
+                <a href="https://sites.google.com/view/mejt-minecraftserver/agbs" target="_blank">Terms & Conditions</a> | 
+                <a href="mailto:jim@bunix.de">Contact Support</a>
+            </p>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast">IP Copied to Clipboard!</div>
+
+    <!-- ==========================================================================
+       JAVASCRIPT: CODE VALIDATION, DISCORD WEBHOOK & EFFECTS
+       ========================================================================== -->
+    <script>
+        // 1. CONFIGURATION: DISCORD WEBHOOK URL
+        // Füge hier deinen Discord Webhook Link ein!
+        const DISCORD_WEBHOOK_URL = "HIER_DEIN_DISCORD_WEBHOOK_LINK_EINFUEGEN";
+
+        // 2. COUPON DATABASE (Gutscheine verwalten)
+        // Du kannst hier jederzeit neue Codes hinzufügen oder alte löschen!
+        const VALID_COUPONS = {
+            "MEJT2026": { rank: "VIP", description: "Free VIP Access" },
+            "MEJT-VIP-FREE": { rank: "VIP", description: "VIP Rank Code" },
+            "MEJT-MVP-CREW": { rank: "MVP", description: "MVP Elite Rank Code" },
+            "WELCOME-MEJT": { rank: "VIP", description: "Welcome Gift VIP" }
+        };
+
+        // 3. COPY IP FUNCTION
+        function copyIP(ip) {
+            navigator.clipboard.writeText(ip);
+            const toast = document.getElementById("toast");
+            toast.classList.add("show");
+            setTimeout(() => { toast.classList.remove("show"); }, 3000);
+        }
+
+        // 4. COUPON REDEEM SYSTEM
+        document.getElementById("coupon-form").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById("mc-username").value.trim();
+            const codeInput = document.getElementById("coupon-code").value.trim().toUpperCase();
+            const messageBox = document.getElementById("redeem-message");
+
+            messageBox.style.display = "none";
+            messageBox.className = "";
+
+            // Prüfe, ob Code gültig ist
+            if (VALID_COUPONS[codeInput]) {
+                const redeemedRank = VALID_COUPONS[codeInput].rank;
+
+                // Erfolgsmeldung für den Spieler auf der Website
+                messageBox.className = "alert-success";
+                messageBox.innerHTML = `🎉 <strong>SUCCESS!</strong> Code redeemed for <strong>${redeemedRank} Rank</strong>!<br>Your request has been submitted to staff.`;
+                messageBox.style.display = "block";
+
+                // Discord Benachrichtigung senden
+                await sendDiscordNotification(username, codeInput, redeemedRank);
+
+                // Formular zurücksetzen
+                document.getElementById("coupon-form").reset();
+            } else {
+                // Fehlermeldung
+                messageBox.className = "alert-error";
+                messageBox.innerHTML = `❌ <strong>INVALID CODE!</strong> Please check for typos or contact support on Discord.`;
+                messageBox.style.display = "block";
+            }
+        });
+
+        // 5. DISCORD WEBHOOK NOTIFICATION FUNCTION
+        async function sendDiscordNotification(username, code, rank) {
+            if (!DISCORD_WEBHOOK_URL || DISCORD_WEBHOOK_URL.includes("HIER_DEIN_DISCORD_WEBHOOK")) {
+                console.warn("Discord Webhook URL nicht konfiguriert!");
+                return;
+            }
+
+            const payload = {
+                embeds: [{
+                    title: "🎁 Neuer Gutschein Eingelöst!",
+                    color: rank === "MVP" ? 66319 : 16711935, // Magenta (#FF00FF) / Blue (#00A2FF)
+                    fields: [
+                        { name: "🎮 Minecraft Username", value: `\`${username}\``, inline: true },
+                        { name: "🔑 Eingelöster Code", value: `\`${code}\``, inline: true },
+                        { name: "⭐ Erhaltener Rang", value: `**${rank}**`, inline: true }
+                    ],
+                    footer: { text: "MEJT Code System • GitHub Pages" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            try {
+                await fetch(DISCORD_WEBHOOK_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+            } catch (err) {
+                console.error("Fehler beim Senden der Discord Nachricht:", err);
+            }
+        }
+
+        // 6. CANVAS NEON PARTICLE BACKGROUND
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const particles = [];
+        const colors = ['#ff00ff', '#00a2ff', '#ffd700', '#2ecc71'];
+
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                alpha: Math.random()
+            });
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.alpha;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
+</body>
+</html>

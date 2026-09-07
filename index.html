@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO Optimization Meta Tags -->
     <title>MEJT | Official Minecraft Server & Gaming Community</title>
-    <meta name="description" content="Join MEJT - The ultimate high-performance Minecraft community server. Featuring custom plugins, Bedwars, whitelist access, VIP ranks, and active gaming nights.">
-    <meta name="keywords" content="MEJT, Minecraft Server, Bedwars, Minecraft Community, MEJT Minecraft, Minecraft VIP, Custom Plugins">
+    <meta name="description" content="Join MEJT - The ultimate high-performance Minecraft community server. IP: mejt.bunix.de. Get whitelisted via Discord or Signal!">
+    <meta name="keywords" content="MEJT, Minecraft Server, Bedwars, MEJT Minecraft, Minecraft VIP, Custom Plugins, mejt.bunix.de">
     <meta name="author" content="MEJT Server Team">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph for Discord / Social Media Previews -->
     <meta property="og:title" content="MEJT - Next-Gen Minecraft Server">
-    <meta property="og:description" content="Enter the realm of MEJT. Custom gameplay, friendly community, and epic events. Get on the Whitelist now!">
+    <meta property="og:description" content="Join MEJT! IP: mejt.bunix.de. Whitelist via Discord & Signal available.">
     <meta property="og:image" content="https://raw.githubusercontent.com/mejt-server/logo/main/logo.jpg">
     <meta property="og:type" content="website">
 
@@ -34,6 +34,7 @@
             --neon-orange: #ff8c00;
             --neon-yellow: #ffd700;
             --neon-green: #2ecc71;
+            --signal-blue: #3a76f0;
             --text-main: #f0f4f8;
             --text-muted: #94a3b8;
             --border-glow: rgba(255, 0, 255, 0.3);
@@ -115,7 +116,7 @@
 
         nav {
             display: flex;
-            gap: 25px;
+            gap: 20px;
             align-items: center;
         }
 
@@ -134,17 +135,17 @@
             text-shadow: 0 0 10px var(--magenta-glow);
         }
 
-        .btn-nav {
-            background: linear-gradient(135deg, var(--magenta-glow), var(--magenta-dark));
+        .btn-nav-discord {
+            background: linear-gradient(135deg, #5865F2, #404EED);
             color: #fff !important;
-            padding: 10px 22px;
+            padding: 10px 20px;
             border-radius: 8px;
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
         }
 
-        .btn-nav:hover {
+        .btn-nav-discord:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(255, 0, 255, 0.7);
+            box-shadow: 0 0 25px rgba(88, 101, 242, 0.7);
         }
 
         /* ==========================================================================
@@ -154,7 +155,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 80vh;
+            min-height: 75vh;
             padding: 60px 0;
             gap: 40px;
         }
@@ -206,7 +207,7 @@
 
         .hero-actions {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
@@ -261,8 +262,8 @@
 
         .mascot-card {
             position: relative;
-            width: 380px;
-            height: 380px;
+            width: 360px;
+            height: 360px;
             background: var(--bg-card);
             border: 2px solid var(--border-glow);
             border-radius: 30px;
@@ -288,7 +289,7 @@
 
         /* Server IP Copy Box */
         .server-ip-card {
-            margin: 40px 0 80px 0;
+            margin: 20px 0 60px 0;
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
@@ -317,31 +318,99 @@
             gap: 15px;
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid var(--magenta-glow);
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .ip-box:hover {
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.6);
+            transform: scale(1.03);
         }
 
         .ip-text {
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             color: var(--neon-yellow);
+            font-size: 1.2rem;
             letter-spacing: 1px;
         }
 
+        /* Whitelist Info Banner */
+        .whitelist-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            border: 1px solid var(--neon-blue);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 80px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 162, 255, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .whitelist-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .whitelist-card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .whitelist-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-discord {
+            background: #5865F2;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+        }
+
+        .btn-discord:hover {
+            background: #4752C4;
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(88, 101, 242, 0.7);
+        }
+
+        .btn-signal {
+            background: var(--signal-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(58, 118, 240, 0.4);
+        }
+
+        .btn-signal:hover {
+            background: #2b5ec4;
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(58, 118, 240, 0.7);
+        }
+
         /* ==========================================================================
-           REDEEM COUPON SECTION
+           VIP / MVP RANKS DISPLAY
            ========================================================================== */
         .section-title {
             text-align: center;
             font-family: 'Orbitron', sans-serif;
             font-size: 2.2rem;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-transform: uppercase;
         }
 
@@ -351,6 +420,80 @@
             margin-bottom: 50px;
         }
 
+        .ranks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .rank-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--magenta-glow);
+            box-shadow: 0 0 35px rgba(255, 0, 255, 0.3);
+        }
+
+        .rank-card.mvp {
+            border-color: var(--neon-blue);
+        }
+
+        .rank-card.mvp:hover {
+            box-shadow: 0 0 35px rgba(0, 162, 255, 0.4);
+        }
+
+        .rank-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .rank-card.vip .rank-title { color: var(--neon-yellow); text-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+        .rank-card.mvp .rank-title { color: var(--neon-blue); text-shadow: 0 0 15px rgba(0, 162, 255, 0.4); }
+
+        .rank-subtitle {
+            color: var(--magenta-glow);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .rank-features {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .rank-features li {
+            padding: 10px 0;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .rank-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* ==========================================================================
+           REDEEM COUPON SECTION
+           ========================================================================== */
         .redeem-container {
             background: linear-gradient(145deg, rgba(20, 22, 35, 0.9), rgba(10, 11, 18, 0.9));
             border: 2px solid var(--border-glow);
@@ -400,7 +543,6 @@
             font-size: 1.1rem;
         }
 
-        /* Result Alert Message */
         #redeem-message {
             margin-top: 20px;
             padding: 15px;
@@ -420,71 +562,6 @@
             background: rgba(231, 76, 60, 0.2);
             border: 1px solid #e74c3c;
             color: #e74c3c;
-        }
-
-        /* ==========================================================================
-           VIP / MVP RANKS DISPLAY
-           ========================================================================== */
-        .ranks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 100px;
-        }
-
-        .rank-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 35px 25px;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .rank-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--magenta-glow);
-            box-shadow: 0 0 35px rgba(255, 0, 255, 0.3);
-        }
-
-        .rank-card.mvp {
-            border-color: var(--neon-blue);
-        }
-
-        .rank-card.mvp:hover {
-            box-shadow: 0 0 35px rgba(0, 162, 255, 0.4);
-        }
-
-        .rank-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .rank-card.vip .rank-title { color: var(--neon-yellow); }
-        .rank-card.mvp .rank-title { color: var(--neon-blue); }
-
-        .rank-features {
-            list-style: none;
-            margin: 25px 0;
-            text-align: left;
-        }
-
-        .rank-features li {
-            padding: 8px 0;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .rank-features li::before {
-            content: "✓";
-            color: var(--neon-green);
-            font-weight: bold;
         }
 
         /* ==========================================================================
@@ -517,7 +594,6 @@
             color: var(--magenta-glow);
         }
 
-        /* Toast notification */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -577,7 +653,7 @@
                 <a href="#ranks">Ranks</a>
                 <a href="#redeem">Redeem Code</a>
                 <a href="https://sites.google.com/view/mejt-minecraftserver/agbs" target="_blank">Rules</a>
-                <a href="https://discord.gg/YOUR-DISCORD-LINK" class="btn-nav" target="_blank">Discord</a>
+                <a href="https://discord.com/invite/8ZeQGhSGq6" class="btn-nav-discord" target="_blank">Discord</a>
             </nav>
         </header>
 
@@ -587,11 +663,11 @@
                 <div class="badge">🚀 Official MEJT Network</div>
                 <h1 class="hero-title">NEXT-GEN <span>MINECRAFT</span> EXPERIENCE</h1>
                 <p class="hero-subtitle">
-                    Dive into our custom-built Minecraft realm featuring Bedwars, custom plugins, active events, and a vibrant gaming community.
+                    Willkommen auf MEJT! Tritt unserer Community bei, sichere dir VIP-Ränge und erlebe maßgeschneiderte Minecraft-Features auf Höchstleistung.
                 </p>
                 <div class="hero-actions">
-                    <a href="#redeem" class="btn-primary">Redeem VIP Code</a>
-                    <a href="https://discord.gg/YOUR-DISCORD-LINK" class="btn-secondary" target="_blank">Join Discord</a>
+                    <a href="#redeem" class="btn-primary">Code Einlösen</a>
+                    <a href="https://discord.com/invite/8ZeQGhSGq6" class="btn-secondary" target="_blank">Join Discord</a>
                 </div>
             </div>
             <div class="hero-media">
@@ -604,63 +680,88 @@
         <!-- Server IP Quick Bar -->
         <div class="server-ip-card">
             <div class="ip-info">
-                <h3>SERVER ADDRESS</h3>
-                <p>Click to copy the IP and start playing!</p>
+                <h3>MAIN SERVER IP</h3>
+                <p>Klicke zum Kopieren der Serveradresse!</p>
             </div>
-            <div class="ip-box" onclick="copyIP('mc.mejt.de')">
-                <span class="ip-text" id="ip-display">mc.mejt.de</span>
-                <span style="color: var(--text-muted); font-size: 0.8rem;">[COPY]</span>
+            <div class="ip-box" onclick="copyIP('mejt.bunix.de')">
+                <span class="ip-text" id="ip-display">mejt.bunix.de</span>
+                <span style="color: var(--text-muted); font-size: 0.85rem;">[KOPIEREN]</span>
+            </div>
+        </div>
+
+        <!-- Whitelist Join Notice -->
+        <div class="whitelist-card">
+            <h3>🔒 Whitelist Server Access</h3>
+            <p>
+                Um auf dem MEJT Server mitspielen zu können, musst du dich in einer unserer Community-Gruppen whitelisten lassen:
+            </p>
+            <div class="whitelist-buttons">
+                <a href="https://discord.com/invite/8ZeQGhSGq6" class="btn-discord" target="_blank">
+                    💬 Whitelist auf Discord anfragen
+                </a>
+                <a href="https://signal.group/#CjQKII74w55DfKtd1r7JVIlr2EJtYO6xOtL56B6MW5MaGMgiEhDg_eEWsL9J1BN0qruCrFos" class="btn-signal" target="_blank">
+                    📱 Whitelist auf Signal anfragen
+                </a>
             </div>
         </div>
 
         <!-- Ranks Overview -->
         <section id="ranks">
-            <h2 class="section-title">SERVER RANKS</h2>
-            <p class="section-subtitle">Unlock special perks, prefix tags, and unique abilities!</p>
+            <h2 class="section-title">SERVER PERKS & RANKS</h2>
+            <p class="section-subtitle">Thanks for supporting the server! ❤</p>
             
             <div class="ranks-grid">
+                <!-- VIP Rank Card -->
                 <div class="rank-card vip">
-                    <div class="rank-title">VIP</div>
-                    <p style="color: var(--text-muted);">For true community supporters</p>
-                    <ul class="rank-features">
-                        <li>Gold [VIP] Chat Prefix</li>
-                        <li>Priority Server Queue Access</li>
-                        <li>Custom Particle Effects</li>
-                        <li>Exclusive VIP Discord Role</li>
-                    </ul>
-                    <a href="#redeem" class="btn-secondary" style="display: inline-block; width: 100%;">Use Code</a>
+                    <div>
+                        <div class="rank-title">VIP</div>
+                        <div class="rank-subtitle">Server Supporter Rank</div>
+                        <ul class="rank-features">
+                            <li><span>✨</span> <strong>Allay Cosmetics Set</strong></li>
+                            <li><span>🍪</span> <strong>Cookie Clicker Premium Page</strong></li>
+                            <li><span>🌐</span> <strong><code>/lobby</code> & <code>/warp spawn</code> Shortcut</strong></li>
+                            <li><span>🏷️</span> <strong>Exclusive VIP TAG in Chat</strong></li>
+                            <li><span>🏆</span> <strong>Server Supporter Status</strong></li>
+                        </ul>
+                    </div>
+                    <a href="#redeem" class="btn-secondary" style="display: inline-block; width: 100%; margin-top: 20px;">Code Einlösen</a>
                 </div>
 
+                <!-- MVP Rank Card -->
                 <div class="rank-card mvp">
-                    <div class="rank-title">MVP</div>
-                    <p style="color: var(--text-muted);">The ultimate elite status</p>
-                    <ul class="rank-features">
-                        <li>Diamond [MVP] Animated Tag</li>
-                        <li>All VIP Perks included</li>
-                        <li>Nick Command Access</li>
-                        <li>Exclusive MVP Lounge & Voice</li>
-                    </ul>
-                    <a href="#redeem" class="btn-primary" style="display: inline-block; width: 100%;">Use Code</a>
+                    <div>
+                        <div class="rank-title">MVP</div>
+                        <div class="rank-subtitle">Ultimate Supporter Rank</div>
+                        <ul class="rank-features">
+                            <li><span>🎨</span> <strong>8 Cosmetics of Choice</strong></li>
+                            <li><span>✨</span> <strong>Alle VIP Perks inklusive!</strong></li>
+                            <li><span>🏷️</span> <strong>Exclusive MVP TAG in Chat</strong></li>
+                            <li><span>🍪</span> Cookie Clicker Premium Access</li>
+                            <li><span>🌐</span> Full Warp & Teleport Shortcuts</li>
+                            <li><span>🚀</span> <strong>Und vieles mehr (uvm.)!</strong></li>
+                        </ul>
+                    </div>
+                    <a href="#redeem" class="btn-primary" style="display: inline-block; width: 100%; margin-top: 20px;">Code Einlösen</a>
                 </div>
             </div>
         </section>
 
         <!-- Redeem Coupon Code Section -->
         <section id="redeem">
-            <h2 class="section-title">REDEEM YOUR CODE</h2>
-            <p class="section-subtitle">Got a VIP or MVP voucher code? Claim it below!</p>
+            <h2 class="section-title">GUTSCHEIN EINLÖSEN</h2>
+            <p class="section-subtitle">Hast du einen Gutscheincode für VIP oder MVP erhalten? Löse ihn hier ein!</p>
 
             <div class="redeem-container">
                 <form id="coupon-form">
                     <div class="form-group">
-                        <label for="mc-username">Minecraft Username</label>
-                        <input type="text" id="mc-username" class="form-control" placeholder="e.g. Steve123" required>
+                        <label for="mc-username">Minecraft Name</label>
+                        <input type="text" id="mc-username" class="form-control" placeholder="z. B. Steve123" required>
                     </div>
                     <div class="form-group">
                         <label for="coupon-code">Gutschein Code</label>
-                        <input type="text" id="coupon-code" class="form-control" placeholder="Enter code (e.g. MEJT-VIP-2026)" required style="text-transform: uppercase;">
+                        <input type="text" id="coupon-code" class="form-control" placeholder="Code eingeben (z. B. MEJT-VIP-2026)" required style="text-transform: uppercase;">
                     </div>
-                    <button type="submit" class="btn-primary btn-redeem">ACTIVATE CODE NOW</button>
+                    <button type="submit" class="btn-primary btn-redeem">JETZT CODE AKTIVIEREN</button>
                 </form>
 
                 <div id="redeem-message"></div>
@@ -669,26 +770,24 @@
 
         <!-- Footer -->
         <footer>
-            <p>© 2026 MEJT Minecraft Network. Not affiliated with Mojang Studios.</p>
+            <p>© 2026 MEJT Minecraft Network. Server IP: <strong>mejt.bunix.de</strong></p>
             <p style="margin-top: 10px;">
-                <a href="https://sites.google.com/view/mejt-minecraftserver/agbs" target="_blank">Terms & Conditions</a> | 
-                <a href="mailto:jim@bunix.de">Contact Support</a>
+                <a href="https://sites.google.com/view/mejt-minecraftserver/agbs" target="_blank">Regeln & AGBs</a> | 
+                <a href="https://discord.com/invite/8ZeQGhSGq6" target="_blank">Discord Support</a>
             </p>
         </footer>
     </div>
 
-    <div class="toast" id="toast">IP Copied to Clipboard!</div>
+    <div class="toast" id="toast">IP in Zwischenablage kopiert! (mejt.bunix.de)</div>
 
     <!-- ==========================================================================
        JAVASCRIPT: CODE VALIDATION, DISCORD WEBHOOK & EFFECTS
        ========================================================================== -->
     <script>
         // 1. CONFIGURATION: DISCORD WEBHOOK URL
-        // Füge hier deinen Discord Webhook Link ein!
         const DISCORD_WEBHOOK_URL = "HIER_DEIN_DISCORD_WEBHOOK_LINK_EINFUEGEN";
 
-        // 2. COUPON DATABASE (Gutscheine verwalten)
-        // Du kannst hier jederzeit neue Codes hinzufügen oder alte löschen!
+        // 2. COUPON DATABASE (Hier verwaltest du deine Codes)
         const VALID_COUPONS = {
             "MEJT2026": { rank: "VIP", description: "Free VIP Access" },
             "MEJT-VIP-FREE": { rank: "VIP", description: "VIP Rank Code" },
@@ -715,24 +814,18 @@
             messageBox.style.display = "none";
             messageBox.className = "";
 
-            // Prüfe, ob Code gültig ist
             if (VALID_COUPONS[codeInput]) {
                 const redeemedRank = VALID_COUPONS[codeInput].rank;
 
-                // Erfolgsmeldung für den Spieler auf der Website
                 messageBox.className = "alert-success";
-                messageBox.innerHTML = `🎉 <strong>SUCCESS!</strong> Code redeemed for <strong>${redeemedRank} Rank</strong>!<br>Your request has been submitted to staff.`;
+                messageBox.innerHTML = `🎉 <strong>ERFOLG!</strong> Code für <strong>${redeemedRank} Rang</strong> wurde eingelöst!<br>Dein Rang wird dir in Kürze freigeschaltet.`;
                 messageBox.style.display = "block";
 
-                // Discord Benachrichtigung senden
                 await sendDiscordNotification(username, codeInput, redeemedRank);
-
-                // Formular zurücksetzen
                 document.getElementById("coupon-form").reset();
             } else {
-                // Fehlermeldung
                 messageBox.className = "alert-error";
-                messageBox.innerHTML = `❌ <strong>INVALID CODE!</strong> Please check for typos or contact support on Discord.`;
+                messageBox.innerHTML = `❌ <strong>UNGÜLTIGER CODE!</strong> Bitte überprüfe die Eingabe oder kontaktiere das Team auf Discord.`;
                 messageBox.style.display = "block";
             }
         });
@@ -747,13 +840,13 @@
             const payload = {
                 embeds: [{
                     title: "🎁 Neuer Gutschein Eingelöst!",
-                    color: rank === "MVP" ? 66319 : 16711935, // Magenta (#FF00FF) / Blue (#00A2FF)
+                    color: rank === "MVP" ? 66319 : 16711935,
                     fields: [
                         { name: "🎮 Minecraft Username", value: `\`${username}\``, inline: true },
                         { name: "🔑 Eingelöster Code", value: `\`${code}\``, inline: true },
                         { name: "⭐ Erhaltener Rang", value: `**${rank}**`, inline: true }
                     ],
-                    footer: { text: "MEJT Code System • GitHub Pages" },
+                    footer: { text: "MEJT Network • mejt.bunix.de" },
                     timestamp: new Date().toISOString()
                 }]
             };

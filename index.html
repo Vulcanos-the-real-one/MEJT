@@ -584,8 +584,67 @@
     <button id="to-top" aria-label="Back to top">↑</button>
     <div class="toast" id="toast" role="status"></div>
 
-    <!-- Inhalte für "Explore Possibilities" (hier bearbeiten!) -->
-    <script src="explore-data.js"></script>
+    <!-- ==========================================================================
+         EXPLORE POSSIBILITIES – HIER BEARBEITEN
+         Einen Block kopieren, einfügen und anpassen. Die Seite baut die Karten automatisch.
+         - title / tagline / description : Text auf Englisch (en) und Deutsch (de)
+         - images : Bildpfade (erstes Bild = Titelbild), z. B. in assets/explore/ ablegen.
+                    Fehlt ein Bild, wird automatisch ein Platzhalter angezeigt.
+         - tags   : kleine Labels auf der Karte (optional)
+         ========================================================================== -->
+    <script>
+    window.MEJT_EXPLORE = {
+
+      gamemodes: [
+        {
+          title:       { en: "Bedwars", de: "Bedwars" },
+          tagline:     { en: "Defend your bed, destroy the others.", de: "Verteidige dein Bett, zerstöre die anderen." },
+          description: {
+            en: "Classic team PvP: gather resources, upgrade your base and eliminate every rival bed. Replace this text with your own description of the mode.",
+            de: "Klassisches Team-PvP: Sammle Ressourcen, rüste deine Basis auf und zerstöre die Betten der Gegner. Ersetze diesen Text durch deine eigene Beschreibung."
+          },
+          images: ["assets/explore/bedwars-1.jpg", "assets/explore/bedwars-2.jpg"],
+          tags: ["PvP", "Teams"]
+        },
+        {
+          title:       { en: "Cookie Clicker", de: "Cookie Clicker" },
+          tagline:     { en: "Click, upgrade, climb the ranking.", de: "Klicken, upgraden, im Ranking aufsteigen." },
+          description: {
+            en: "Our in-game idle mode. Explain here how it works and what players can earn.",
+            de: "Unser Idle-Modus im Spiel. Erkläre hier, wie er funktioniert und was Spieler verdienen können."
+          },
+          images: ["assets/explore/cookie-1.jpg"],
+          tags: ["Casual"]
+        }
+        // ,{ ...weiterer Gamemode... }
+      ],
+
+      worlds: [
+        {
+          title:       { en: "Main Lobby", de: "Haupt-Lobby" },
+          tagline:     { en: "Your hub for everything on MEJT.", de: "Dein Startpunkt für alles auf MEJT." },
+          description: {
+            en: "Describe the lobby, its warps and what players can find there.",
+            de: "Beschreibe die Lobby, ihre Warps und was Spieler dort finden."
+          },
+          images: ["assets/explore/lobby-1.jpg"],
+          tags: ["Spawn"]
+        },
+        {
+          title:       { en: "Survival World", de: "Survival-Welt" },
+          tagline:     { en: "Build, explore and thrive.", de: "Bauen, entdecken, überleben." },
+          description: {
+            en: "Tell players about rules, size, special biomes or events of this world.",
+            de: "Erzähle den Spielern von Regeln, Größe, besonderen Biomen oder Events dieser Welt."
+          },
+          images: ["assets/explore/survival-1.jpg"],
+          tags: ["Survival"]
+        }
+        // ,{ ...weitere Welt... }
+      ]
+
+    };
+    </script>
 
     <script>
         /* ======================= 1. LANGUAGE ======================= */

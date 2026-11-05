@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEJT | Official Minecraft Server & Gaming Community</title>
+    <meta name="description" content="Join MEJT - The ultimate high-performance Minecraft community server. IP: mejt.bunix.de. Get whitelisted via Discord or Signal!">
+    <meta name="keywords" content="MEJT, Minecraft Server, Bedwars, MEJT Minecraft, Minecraft VIP, mejt.bunix.de">
+    <meta name="author" content="MEJT Server Team">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#07080c">
+
+    <meta property="og:title" content="MEJT - 1.21.8 Minecraft Server">
+    <meta property="og:description" content="Join MEJT! IP: mejt.bunix.de. Whitelist via Discord & Signal available.">
+    <meta property="og:image" content="assets/logo.png">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #07080c;
+            --surface: rgba(20, 22, 32, 0.72);
+            --surface-solid: #12141d;
+            --line: rgba(255, 255, 255, 0.08);
+            --line-strong: rgba(255, 255, 255, 0.16);
+            --accent: #e040fb;
+            --accent-2: #8b5cf6;
+            --blue: #38a9ff;
+            --yellow: #ffd54a;
+            --green: #34d399;
+            --orange: #ff9f43;
+            --signal: #3a76f0;
+            --text: #f1f5f9;
+            --muted: #9aa7bb;
+            --radius: 16px;
+            --maxw: 1160px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', system-ui, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Soft background glow + particles */
+        body::before {
+            content: "";
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(900px 500px at 15% -10%, rgba(224, 64, 251, 0.14), transparent 60%),
+                radial-gradient(800px 500px at 95% 10%, rgba(56, 169, 255, 0.10), transparent 60%);
+        }
+        #particle-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: .7; }
+
+        a { color: inherit; }
+        :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+
+        .container { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+        main, footer { position: relative; z-index: 1; }
+
+        /* ---------- Header ---------- */
+        .site-header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(7, 8, 12, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+        .site-header .container { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-img { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; border: 1px solid var(--line-strong); }
+        .brand-title { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 1.4rem; letter-spacing: 3px; }
+        .brand-title span:nth-child(1) { color: var(--orange); }
+        .brand-title span:nth-child(2) { color: var(--blue); }
+        .brand-title span:nth-child(3) { color: var(--yellow); }
+        .brand-title span:nth-child(4) { color: var(--green); }
+
+        nav { display: flex; align-items: center; gap: 6px; }
+        nav a.nav-link {
+            color: var(--muted); text-decoration: none; font-weight: 500; font-size: .93rem;
+            padding: 8px 14px; border-radius: 8px; transition: color .2s, background .2s;
+        }
+        nav a.nav-link:hover { color: var(--text); background: rgba(255,255,255,.06); }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            font-family: inherit; font-weight: 600; font-size: .95rem;
+            padding: 13px 26px; border-radius: 10px; text-decoration: none; cursor: pointer;
+            border: 1px solid transparent; transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 8px 24px rgba(224, 64, 251, .28); }
+        .btn-primary:hover { box-shadow: 0 12px 32px rgba(224, 64, 251, .42); }
+        .btn-ghost { background: rgba(255,255,255,.04); color: var(--text); border-color: var(--line-strong); }
+        .btn-ghost:hover { background: rgba(255,255,255,.09); border-color: var(--blue); }
+        .btn-discord { background: #5865F2; color: #fff; box-shadow: 0 8px 22px rgba(88,101,242,.3); }
+        .btn-discord:hover { background: #4752C4; }
+        .btn-signal { background: var(--signal); color: #fff; box-shadow: 0 8px 22px rgba(58,118,240,.3); }
+        .btn-signal:hover { background: #2b5ec4; }
+        .btn-sm { padding: 9px 16px; font-size: .88rem; }
+
+        .btn-lang {
+            background: transparent; border: 1px solid var(--line-strong); color: var(--text);
+            padding: 8px 12px; border-radius: 8px; cursor: pointer; font: 600 .82rem 'Outfit', sans-serif;
+            transition: border-color .2s, background .2s;
+        }
+        .btn-lang:hover { border-color: var(--accent); background: rgba(224,64,251,.1); }
+
+        .menu-toggle { display: none; background: none; border: 1px solid var(--line-strong); color: var(--text); width: 42px; height: 42px; border-radius: 10px; font-size: 1.2rem; cursor: pointer; }
+
+        /* ---------- Hero ---------- */
+        .hero { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 56px; padding: 90px 0 70px; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: .8rem; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase;
+            color: var(--accent); background: rgba(224,64,251,.1); border: 1px solid rgba(224,64,251,.3);
+            padding: 6px 14px; border-radius: 999px; margin-bottom: 22px;
+        }
+        .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+        .hero h1 { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.1; text-transform: uppercase; margin-bottom: 22px; }
+        .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--blue)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p.lead { color: var(--muted); font-size: 1.12rem; max-width: 520px; margin-bottom: 34px; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+        .hero-media { display: flex; justify-content: center; }
+        .mascot-card {
+            width: min(380px, 100%); aspect-ratio: 1; border-radius: 28px;
+            background: var(--surface); border: 1px solid var(--line-strong);
+            display: grid; place-items: center;
+            box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 60px rgba(224,64,251,.12);
+            animation: float 7s ease-in-out infinite;
+        }
+        .mascot-img { width: 82%; height: auto; object-fit: contain; filter: drop-shadow(0 12px 28px rgba(224,64,251,.35)); }
+
+        /* ---------- Join strip ---------- */
+        .join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 100px; }
+        .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; backdrop-filter: blur(10px); }
+        .panel h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; letter-spacing: 1px; margin-bottom: 6px; }
+        .panel p { color: var(--muted); font-size: .95rem; margin-bottom: 18px; }
+        .ip-box {
+            display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%;
+            background: rgba(0,0,0,.45); border: 1px solid var(--line-strong); border-radius: 12px;
+            padding: 14px 18px; cursor: pointer; color: inherit; font-family: inherit;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .ip-box:hover { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(224,64,251,.12); }
+        .ip-text { font-family: 'Orbitron', sans-serif; font-weight: 600; color: var(--yellow); font-size: 1.1rem; letter-spacing: .5px; }
+        .ip-copy { color: var(--muted); font-size: .8rem; font-weight: 600; letter-spacing: 1px; }
+        .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+        /* ---------- Sections ---------- */
+        section { padding: 10px 0 100px; }
+        .section-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+        .section-kicker { color: var(--accent); font-size: .8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+        .section-title { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 3.5vw, 2.2rem); text-transform: uppercase; margin-bottom: 12px; }
+        .section-subtitle { color: var(--muted); }
+
+        /* ---------- Explore ---------- */
+        .explore-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 36px; }
+        .tab {
+            font: 600 .92rem 'Outfit', sans-serif; color: var(--muted);
+            background: transparent; border: 1px solid var(--line); padding: 10px 22px; border-radius: 999px; cursor: pointer;
+            transition: all .2s;
+        }
+        .tab:hover { color: var(--text); border-color: var(--line-strong); }
+        .tab[aria-selected="true"] { color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-color: transparent; }
+
+        .explore-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+        .card {
+            text-align: left; font-family: inherit; color: inherit; cursor: pointer; padding: 0;
+            background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+            overflow: hidden; display: flex; flex-direction: column;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+        }
+        .card:hover { transform: translateY(-6px); border-color: rgba(224,64,251,.5); box-shadow: 0 18px 40px rgba(0,0,0,.45); }
+        .card-img { aspect-ratio: 16/10; width: 100%; object-fit: cover; display: block; background: #151826; transition: transform .5s; }
+        .card:hover .card-img { transform: scale(1.04); }
+        .card-img-wrap { overflow: hidden; }
+        .card-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+        .card-title { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 600; }
+        .card-tagline { color: var(--muted); font-size: .94rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 8px; }
+        .tag { font-size: .72rem; font-weight: 600; letter-spacing: .5px; padding: 3px 10px; border-radius: 999px; background: rgba(56,169,255,.12); color: var(--blue); border: 1px solid rgba(56,169,255,.25); }
+        .card-more { color: var(--accent); font-size: .88rem; font-weight: 600; }
+        .empty { text-align: center; color: var(--muted); grid-column: 1 / -1; padding: 40px 0; }
+
+        /* Modal */
+        dialog.modal {
+            margin: auto; width: min(920px, 94vw); max-height: 92vh; overflow: auto;
+            background: var(--surface-solid); color: var(--text);
+            border: 1px solid var(--line-strong); border-radius: 20px; padding: 0;
+            box-shadow: 0 40px 120px rgba(0,0,0,.7);
+        }
+        dialog.modal::backdrop { background: rgba(3,4,8,.78); backdrop-filter: blur(4px); }
+        .modal-close {
+            position: absolute; top: 14px; right: 14px; z-index: 2; width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(0,0,0,.6); border: 1px solid var(--line-strong); color: #fff; font-size: 1.2rem; cursor: pointer;
+        }
+        .modal-close:hover { background: var(--accent); }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: #151826; }
+        .thumbs { display: flex; gap: 8px; padding: 12px 24px 0; overflow-x: auto; }
+        .thumb { width: 84px; height: 52px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; opacity: .6; transition: opacity .2s, border-color .2s; background: #151826; }
+        .thumb.active, .thumb:hover { opacity: 1; border-color: var(--accent); }
+        .modal-body { padding: 22px 28px 32px; }
+        .modal-body h3 { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; margin-bottom: 6px; }
+        .modal-body .modal-tagline { color: var(--accent); font-weight: 500; margin-bottom: 14px; }
+        .modal-body p.desc { color: #cbd5e1; white-space: pre-line; }
+
+        /* ---------- Ranks ---------- */
+        .ranks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 860px; margin: 0 auto; }
+        .rank-card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 34px 28px; display: flex; flex-direction: column; justify-content: space-between; transition: transform .25s, border-color .25s; }
+        .rank-card:hover { transform: translateY(-6px); }
+        .rank-card.vip:hover { border-color: var(--yellow); }
+        .rank-card.mvp { border-color: rgba(56,169,255,.4); }
+        .rank-card.mvp:hover { border-color: var(--blue); }
+        .rank-title { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 2rem; }
+        .vip .rank-title { color: var(--yellow); }
+        .mvp .rank-title { color: var(--blue); }
+        .rank-subtitle { color: var(--muted); font-size: .95rem; margin-bottom: 18px; }
+        .rank-features { list-style: none; margin-bottom: 24px; }
+        .rank-features li { padding: 11px 0; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: center; font-size: .96rem; }
+        .rank-features li:last-child { border-bottom: none; }
+        .rank-features code { background: rgba(255,255,255,.08); padding: 1px 6px; border-radius: 5px; font-size: .88em; }
+
+        /* ---------- Redeem ---------- */
+        .redeem-box { max-width: 560px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 20px; padding: 36px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: .82rem; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+        .form-control { width: 100%; background: rgba(0,0,0,.4); border: 1px solid var(--line-strong); padding: 14px 16px; border-radius: 10px; color: #fff; font: 400 1rem 'Outfit', sans-serif; transition: border-color .2s, box-shadow .2s; }
+        .form-control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(224,64,251,.15); }
+        .btn-block { width: 100%; }
+        #redeem-message { margin-top: 18px; padding: 14px; border-radius: 10px; display: none; text-align: center; font-weight: 500; }
+        .alert-success { background: rgba(52,211,153,.12); border: 1px solid var(--green); color: var(--green); }
+        .alert-error { background: rgba(239,68,68,.12); border: 1px solid #ef4444; color: #f87171; }
+
+        /* ---------- Footer ---------- */
+        footer { border-top: 1px solid var(--line); padding: 36px 0; text-align: center; color: var(--muted); font-size: .9rem; background: rgba(7,8,12,.6); }
+        footer a { color: var(--text); text-decoration: none; }
+        footer a:hover { color: var(--accent); }
+        footer .links { margin-top: 8px; display: flex; justify-content: center; gap: 18px; }
+
+        .toast { position: fixed; bottom: 28px; left: 50%; transform: translate(-50%, 20px); background: var(--surface-solid); border: 1px solid var(--accent); color: #fff; padding: 12px 22px; border-radius: 10px; font-weight: 500; box-shadow: 0 10px 30px rgba(0,0,0,.5); opacity: 0; pointer-events: none; transition: all .3s; z-index: 9999; }
+        .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+        }
+
+        /* ==========================================================
+           EFFECTS & INTERACTIONS
+           ========================================================== */
+
+        /* Scroll progress bar */
+        #progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 100; background: linear-gradient(90deg, var(--orange), var(--accent), var(--blue), var(--green)); box-shadow: 0 0 12px rgba(224,64,251,.6); }
+
+        /* Cursor trail */
+        #trail-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 200; }
+        @media (hover: none) { #trail-canvas { display: none; } }
+
+        /* Gear / admin button */
+        .header-left { display: flex; align-items: center; gap: 14px; }
+        .gear-btn { position: relative; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: grid; place-items: center;
+            background: rgba(255,255,255,.04); border: 1px solid var(--line-strong); color: var(--muted); transition: color .2s, border-color .2s, background .2s; }
+        .gear-btn svg { width: 20px; height: 20px; transition: transform .6s cubic-bezier(.2,1.2,.4,1); }
+        .gear-btn:hover { color: #fff; border-color: var(--accent); background: rgba(224,64,251,.12); }
+        .gear-btn:hover svg { transform: rotate(90deg); }
+        .gear-btn.on::after { content: ""; position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+        /* Admin panel */
+        dialog.admin { margin: auto; width: min(980px, 96vw); height: min(86vh, 800px); padding: 0; overflow: hidden; display: none; flex-direction: column;
+            background: var(--surface-solid); color: var(--text); border: 1px solid var(--line-strong); border-radius: 20px; box-shadow: 0 40px 120px rgba(0,0,0,.7); }
+        dialog.admin[open] { display: flex; animation: modalIn .35s cubic-bezier(.2,1.2,.4,1); }
+        dialog.admin::backdrop { background: rgba(3,4,8,.8); backdrop-filter: blur(4px); }
+        .adm-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+        .adm-top h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; letter-spacing: 1px; }
+        .adm-user { color: var(--muted); font-size: .85rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .adm-tabs { display: flex; gap: 6px; padding: 12px 20px 0; border-bottom: 1px solid var(--line); overflow-x: auto; }
+        .adm-tab { background: none; border: none; color: var(--muted); font: 600 .9rem 'Outfit', sans-serif; padding: 10px 14px; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
+        .adm-tab:hover { color: var(--text); }
+        .adm-tab.active { color: #fff; border-bottom-color: var(--accent); }
+        .adm-body { padding: 20px; overflow: auto; flex: 1; }
+        .adm-center { max-width: 460px; margin: 40px auto; text-align: center; }
+        .adm-center h4 { font-family: 'Orbitron', sans-serif; margin-bottom: 10px; }
+        .adm-center p, .adm-note { color: var(--muted); font-size: .93rem; margin-bottom: 18px; }
+        .adm-center ol { text-align: left; color: var(--muted); font-size: .9rem; padding-left: 20px; display: grid; gap: 6px; }
+        .adm-row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 8px; background: rgba(255,255,255,.02); }
+        .adm-row .grow { flex: 1; min-width: 0; }
+        .adm-row .grow b { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .adm-row .grow small { color: var(--muted); }
+        .adm-thumb { width: 64px; height: 40px; border-radius: 8px; object-fit: cover; background: #151826; flex: none; }
+        .adm-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+        .adm-bar .spacer { flex: 1; }
+        .adm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .adm-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+        .adm-field label { font-size: .75rem; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+        .adm-field textarea { min-height: 110px; resize: vertical; }
+        .adm-imgs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+        .adm-img { position: relative; width: 120px; height: 76px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line-strong); }
+        .adm-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .adm-img button { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; border: none; background: rgba(0,0,0,.75); color: #fff; cursor: pointer; font-size: .75rem; }
+        .adm-img button:hover { background: #ef4444; }
+        .adm-btn { font: 600 .85rem 'Outfit', sans-serif; padding: 8px 14px; border-radius: 8px; cursor: pointer; border: 1px solid var(--line-strong); background: rgba(255,255,255,.05); color: var(--text); transition: background .2s, border-color .2s; }
+        .adm-btn:hover { background: rgba(255,255,255,.1); border-color: var(--blue); }
+        .adm-btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-color: transparent; color: #fff; }
+        .adm-btn.danger:hover { background: rgba(239,68,68,.2); border-color: #ef4444; color: #f87171; }
+        .adm-btn:disabled { opacity: .5; cursor: wait; }
+        .adm-pill { font-size: .72rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+        .adm-pill.VIP { background: rgba(255,213,74,.15); color: var(--yellow); }
+        .adm-pill.MVP { background: rgba(56,169,255,.15); color: var(--blue); }
+        .adm-msg { margin-top: 12px; font-size: .88rem; }
+        .adm-msg.err { color: #f87171; } .adm-msg.ok { color: var(--green); }
+        @media (max-width: 700px) { .adm-grid { grid-template-columns: 1fr; } }
+
+        /* Header on scroll */
+        .site-header { transition: background .3s, box-shadow .3s; }
+        .site-header.scrolled { background: rgba(7,8,12,.94); box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+
+        /* Nav underline + active state */
+        nav a.nav-link { position: relative; }
+        nav a.nav-link::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 3px; height: 2px; border-radius: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--blue)); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+        nav a.nav-link:hover::after, nav a.nav-link.active::after { transform: scaleX(1); }
+        nav a.nav-link.active { color: var(--text); }
+
+        /* Logo + brand */
+        .logo-img { transition: transform .5s cubic-bezier(.2,1.4,.4,1), box-shadow .3s; }
+        .brand:hover .logo-img { transform: rotate(-10deg) scale(1.12); box-shadow: 0 0 20px rgba(224,64,251,.55); }
+        .brand-title span { display: inline-block; transition: transform .25s; }
+        .brand:hover .brand-title span { transform: translateY(-3px); }
+        .brand:hover .brand-title span:nth-child(2) { transition-delay: .05s; }
+        .brand:hover .brand-title span:nth-child(3) { transition-delay: .1s; }
+        .brand:hover .brand-title span:nth-child(4) { transition-delay: .15s; }
+
+        /* Buttons: shine sweep + ripple */
+        .btn { position: relative; overflow: hidden; isolation: isolate; }
+        .btn::after { content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%; z-index: -1;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent); transform: skewX(-20deg); transition: left .6s ease; }
+        .btn:hover::after { left: 130%; }
+        .btn:active { transform: translateY(0) scale(.97); }
+        .btn-primary { background-size: 200% 200%; animation: gradShift 6s ease infinite; }
+        .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,.4); transform: scale(0); animation: ripple .6s ease-out forwards; pointer-events: none; z-index: -1; }
+        @keyframes ripple { to { transform: scale(4); opacity: 0; } }
+        @keyframes gradShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+        /* Hero */
+        .hero h1 span { background-size: 220% 100%; animation: shimmer 5s linear infinite; }
+        @keyframes shimmer { 0% { background-position: 0% 0; } 100% { background-position: 220% 0; } }
+        .eyebrow::before { animation: pulseDot 2s ease-in-out infinite; }
+        @keyframes pulseDot { 0%,100% { box-shadow: 0 0 0 0 rgba(52,211,153,.6); } 50% { box-shadow: 0 0 0 7px rgba(52,211,153,0); } }
+        .hero-media { position: relative; }
+        .hero-media::before { content: ""; position: absolute; width: 70%; aspect-ratio: 1; border-radius: 50%; z-index: 0;
+            background: conic-gradient(from 0deg, rgba(224,64,251,.35), rgba(56,169,255,.3), rgba(52,211,153,.25), rgba(224,64,251,.35));
+            filter: blur(60px); animation: spin 14s linear infinite; }
+        .mascot-card { position: relative; z-index: 1; animation: floatT 7s ease-in-out infinite; transition: transform .2s ease-out; will-change: transform; }
+        .mascot-img { transition: transform .5s cubic-bezier(.2,1.4,.4,1); }
+        .mascot-card:hover .mascot-img { transform: scale(1.07) rotate(2deg); }
+        @keyframes floatT { 0%,100% { translate: 0 0; } 50% { translate: 0 -12px; } }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Spotlight following the cursor inside cards */
+        .card, .rank-card, .panel, .redeem-box { position: relative; }
+        .card::before, .rank-card::before, .panel::before, .redeem-box::before {
+            content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1; opacity: 0; transition: opacity .3s;
+            background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(224,64,251,.16), transparent 60%);
+        }
+        .card:hover::before, .rank-card:hover::before, .panel:hover::before, .redeem-box:hover::before { opacity: 1; }
+        .card, .rank-card { transition: transform .2s ease-out, border-color .25s, box-shadow .25s; will-change: transform; }
+        .rank-card.vip:hover { box-shadow: 0 18px 44px rgba(255,213,74,.12); }
+        .rank-card.mvp:hover { box-shadow: 0 18px 44px rgba(56,169,255,.18); }
+        .panel { transition: border-color .3s, transform .3s; }
+        .panel:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+
+        /* Card details */
+        .card-more { display: inline-block; transition: transform .25s; }
+        .card:hover .card-more { transform: translateX(6px); }
+        .card-title { transition: color .25s; }
+        .card:hover .card-title { color: var(--accent); }
+        .tag { transition: background .2s, transform .2s; }
+        .card:hover .tag { background: rgba(56,169,255,.22); }
+        .tab { position: relative; overflow: hidden; }
+        .tab:active { transform: scale(.95); }
+
+        /* Rank feature rows */
+        .rank-features li { transition: transform .25s, background .25s, padding .25s; border-radius: 8px; }
+        .rank-features li:hover { transform: translateX(6px); background: rgba(255,255,255,.04); padding-left: 8px; }
+        .rank-features li > span:first-child { display: inline-block; transition: transform .3s cubic-bezier(.2,1.6,.4,1); }
+        .rank-features li:hover > span:first-child { transform: scale(1.35) rotate(-8deg); }
+        .rank-title { transition: text-shadow .3s; }
+        .vip:hover .rank-title { text-shadow: 0 0 22px rgba(255,213,74,.55); }
+        .mvp:hover .rank-title { text-shadow: 0 0 22px rgba(56,169,255,.6); }
+
+        /* IP box */
+        .ip-box { position: relative; overflow: hidden; }
+        .ip-box:active { transform: scale(.98); }
+        .ip-box.copied { border-color: var(--green); box-shadow: 0 0 0 4px rgba(52,211,153,.15); }
+        .ip-box.copied .ip-copy { color: var(--green); }
+
+        /* Section heading underline grows on reveal */
+        .section-title { position: relative; padding-bottom: 14px; }
+        .section-title::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 0; height: 3px; border-radius: 3px; transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--accent), var(--blue)); transition: width .8s ease .3s; }
+        .section-head.in .section-title::after { width: 70px; }
+
+        /* Form */
+        .form-control:hover { border-color: rgba(255,255,255,.3); }
+        .form-group label { transition: color .2s; }
+        .form-group:focus-within label { color: var(--accent); }
+
+        /* Scroll reveal */
+        .reveal { opacity: 0; }
+        .reveal.in { opacity: 1; animation: revealUp .75s cubic-bezier(.2,.8,.2,1) var(--d, 0s) both; }
+        @keyframes revealUp { from { opacity: 0; translate: 0 34px; } to { opacity: 1; translate: 0 0; } }
+
+        /* Modal animation */
+        dialog.modal[open] { animation: modalIn .35s cubic-bezier(.2,1.2,.4,1); }
+        dialog.modal[open]::backdrop { animation: fadeIn .3s ease; }
+        @keyframes modalIn { from { opacity: 0; transform: translateY(24px) scale(.95); } to { opacity: 1; transform: none; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .gallery-main { transition: opacity .25s; }
+        .thumb { transition: opacity .2s, border-color .2s, transform .2s; }
+        .thumb:hover { transform: translateY(-3px); }
+        .modal-close { transition: background .2s, transform .3s; }
+        .modal-close:hover { transform: rotate(90deg); }
+
+        /* Back to top */
+        #to-top { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;
+            background: var(--surface-solid); color: #fff; border: 1px solid var(--line-strong); opacity: 0; transform: translateY(16px); pointer-events: none;
+            transition: opacity .3s, transform .3s, background .2s, box-shadow .2s; }
+        #to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+        #to-top:hover { background: var(--accent); box-shadow: 0 0 20px rgba(224,64,251,.5); transform: translateY(-3px); }
+
+        /* Legal dialog */
+        footer .links { flex-wrap: wrap; gap: 8px 22px; }
+        dialog.legal { margin: auto; width: min(860px, 94vw); height: min(88vh, 860px); padding: 0; overflow: hidden; display: none; flex-direction: column;
+            background: var(--surface-solid); color: var(--text); border: 1px solid var(--line-strong); border-radius: 20px; box-shadow: 0 40px 120px rgba(0,0,0,.7); }
+        dialog.legal[open] { display: flex; animation: modalIn .35s cubic-bezier(.2,1.2,.4,1); }
+        dialog.legal::backdrop { background: rgba(3,4,8,.8); backdrop-filter: blur(4px); }
+        .legal-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px 0 20px; border-bottom: 1px solid var(--line); }
+        .legal-tabs { display: flex; gap: 4px; overflow-x: auto; }
+        .legal-top .adm-btn { margin-bottom: 10px; }
+        .legal-body { padding: 24px 28px 40px; overflow: auto; flex: 1; line-height: 1.7; color: #cbd5e1; font-size: .96rem; }
+        .legal-body h2 { font-family: 'Orbitron', sans-serif; font-size: 1.35rem; color: #fff; margin-bottom: 4px; }
+        .legal-body h3 { font-size: 1.02rem; color: #fff; margin: 22px 0 6px; }
+        .legal-body p, .legal-body ul { margin-bottom: 10px; }
+        .legal-body ul { padding-left: 22px; display: grid; gap: 6px; }
+        .legal-body a { color: var(--blue); }
+        .legal-body .meta { color: var(--muted); font-size: .85rem; }
+        .ph { background: rgba(255,213,74,.14); color: var(--yellow); padding: 0 4px; border-radius: 4px; }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 60px; gap: 40px; }
+            .hero p.lead { margin-inline: auto; }
+            .hero-actions { justify-content: center; }
+            .join-grid { grid-template-columns: 1fr; }
+            .menu-toggle { display: block; }
+            nav {
+                position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+                background: rgba(7,8,12,.97); border-bottom: 1px solid var(--line); padding: 14px 24px 20px; display: none;
+            }
+            nav.open { display: flex; }
+            nav a.nav-link { padding: 12px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="progress" aria-hidden="true"></div>
+    <canvas id="trail-canvas" aria-hidden="true"></canvas>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="header-left">
+                <button class="gear-btn" id="gear-btn" aria-label="Admin" title="Admin">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </button>
+                <a href="#top" class="brand" aria-label="MEJT">
+                    <img src="assets/logo.png" alt="MEJT Logo" class="logo-img" onerror="this.style.visibility='hidden'">
+                    <div class="brand-title"><span>M</span><span>E</span><span>J</span><span>T</span></div>
+                </a>
+            </div>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+
+            <nav id="main-nav">
+                <a class="nav-link" href="#top" data-en="Home" data-de="Startseite">Home</a>
+                <a class="nav-link" href="#explore" data-en="Explore" data-de="Entdecken">Explore</a>
+                <a class="nav-link" href="#ranks" data-en="Ranks" data-de="Ränge">Ranks</a>
+                <a class="nav-link" href="#redeem" data-en="Redeem Code" data-de="Code einlösen">Redeem Code</a>
+                <a class="nav-link" href="https://sites.google.com/view/mejt-minecraftserver/agbs" target="_blank" rel="noopener" data-en="Rules" data-de="Regeln">Rules</a>
+                <a class="btn btn-discord btn-sm" href="https://discord.com/invite/8ZeQGhSGq6" target="_blank" rel="noopener">Discord</a>
+                <button id="lang-toggle-btn" class="btn-lang" onclick="toggleLanguage()" aria-label="Switch language">🌐 <span id="lang-btn-text">DE</span></button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <div class="container">
+
+            <!-- Hero -->
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="eyebrow" data-en="Official MEJT Network" data-de="Offizielles MEJT Netzwerk">Official MEJT Network</div>
+                    <h1 data-en="1.21.8 <span>Minecraft</span> Experience" data-de="1.21.8 <span>Minecraft</span> Erlebnis">1.21.8 <span>Minecraft</span> Experience</h1>
+                    <p class="lead" data-en="Welcome to MEJT! Join our community, unlock VIP ranks and discover custom gamemodes on a high-performance server."
+                       data-de="Willkommen auf MEJT! Tritt unserer Community bei, sichere dir VIP-Ränge und entdecke eigene Spielmodi auf einem leistungsstarken Server.">
+                        Welcome to MEJT! Join our community, unlock VIP ranks and discover custom gamemodes on a high-performance server.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#explore" class="btn btn-primary" data-en="Explore Possibilities" data-de="Möglichkeiten entdecken">Explore Possibilities</a>
+                        <a href="https://discord.com/invite/8ZeQGhSGq6" class="btn btn-ghost" target="_blank" rel="noopener" data-en="Join Discord" data-de="Discord beitreten">Join Discord</a>
+                    </div>
+                </div>
+                <div class="hero-media">
+                    <div class="mascot-card">
+                        <img src="assets/mascot.png" alt="MEJT Allay Mascot" class="mascot-img" onerror="this.style.display='none'">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Join strip -->
+            <div class="join-grid">
+                <div class="panel">
+                    <h3 data-en="SERVER IP" data-de="SERVER IP">SERVER IP</h3>
+                    <p data-en="Click to copy the server address." data-de="Klicke, um die Serveradresse zu kopieren.">Click to copy the server address.</p>
+                    <button class="ip-box" onclick="copyIP('mejt.bunix.de')" aria-label="Copy server IP">
+                        <span class="ip-text">mejt.bunix.de</span>
+                        <span class="ip-copy" data-en="COPY" data-de="KOPIEREN">COPY</span>
+                    </button>
+                </div>
+                <div class="panel">
+                    <h3 data-en="WHITELIST ACCESS" data-de="WHITELIST-ZUGANG">WHITELIST ACCESS</h3>
+                    <p data-en="To play on MEJT you need to be whitelisted via one of our community groups."
+                       data-de="Um auf MEJT zu spielen, musst du dich über eine unserer Community-Gruppen whitelisten lassen.">To play on MEJT you need to be whitelisted via one of our community groups.</p>
+                    <div class="btn-row">
+                        <a href="https://discord.com/invite/8ZeQGhSGq6" class="btn btn-discord btn-sm" target="_blank" rel="noopener" data-en="Discord" data-de="Discord">Discord</a>
+                        <a href="https://signal.group/#CjQKII74w55DfKtd1r7JVIlr2EJtYO6xOtL56B6MW5MaGMgiEhDg_eEWsL9J1BN0qruCrFos" class="btn btn-signal btn-sm" target="_blank" rel="noopener">Signal</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explore Possibilities -->
+            <section id="explore">
+                <div class="section-head">
+                    <div class="section-kicker" data-en="What awaits you" data-de="Das erwartet dich">What awaits you</div>
+                    <h2 class="section-title" data-en="Explore Possibilities" data-de="Möglichkeiten entdecken">Explore Possibilities</h2>
+                    <p class="section-subtitle" data-en="Discover our gamemodes and worlds and find out what you can do on MEJT."
+                       data-de="Entdecke unsere Spielmodi und Welten und finde heraus, was du auf MEJT machen kannst.">Discover our gamemodes and worlds and find out what you can do on MEJT.</p>
+                </div>
+
+                <div class="explore-tabs" role="tablist">
+                    <button class="tab" role="tab" aria-selected="true" data-tab="gamemodes" data-en="Gamemodes" data-de="Spielmodi">Gamemodes</button>
+                    <button class="tab" role="tab" aria-selected="false" data-tab="worlds" data-en="Worlds" data-de="Welten">Worlds</button>
+                </div>
+
+                <div class="explore-grid" id="explore-grid"></div>
+            </section>
+
+            <!-- Ranks -->
+            <section id="ranks">
+                <div class="section-head">
+                    <div class="section-kicker" data-en="Support the server" data-de="Unterstütze den Server">Support the server</div>
+                    <h2 class="section-title" data-en="Perks & Ranks" data-de="Perks & Ränge">Perks & Ranks</h2>
+                    <p class="section-subtitle" data-en="Thank you for supporting MEJT ❤" data-de="Danke für deine Unterstützung ❤">Thank you for supporting MEJT ❤</p>
+                </div>
+
+                <div class="ranks-grid">
+                    <div class="rank-card vip">
+                        <div>
+                            <div class="rank-title">VIP</div>
+                            <div class="rank-subtitle" data-en="Server Supporter Rank" data-de="Server-Supporter-Rang">Server Supporter Rank</div>
+                            <ul class="rank-features">
+                                <li><span>✨</span> <span data-en="Allay Cosmetics Set" data-de="Allay Cosmetics Set">Allay Cosmetics Set</span></li>
+                                <li><span>🍪</span> <span data-en="Cookie Clicker Premium Page" data-de="Cookie Clicker Premium Seite">Cookie Clicker Premium Page</span></li>
+                                <li><span>🌐</span> <span><code>/lobby</code> & <code>/warp spawn</code> Shortcut</span></li>
+                                <li><span>🏷️</span> <span data-en="Exclusive VIP tag in chat" data-de="Exklusiver VIP-Tag im Chat">Exclusive VIP tag in chat</span></li>
+                                <li><span>🏆</span> <span data-en="Server Supporter status" data-de="Server-Supporter-Status">Server Supporter status</span></li>
+                            </ul>
+                        </div>
+                        <a href="#redeem" class="btn btn-ghost btn-block" data-en="Redeem Code" data-de="Code einlösen">Redeem Code</a>
+                    </div>
+
+                    <div class="rank-card mvp">
+                        <div>
+                            <div class="rank-title">MVP</div>
+                            <div class="rank-subtitle" data-en="Ultimate Supporter Rank" data-de="Ultimativer Supporter-Rang">Ultimate Supporter Rank</div>
+                            <ul class="rank-features">
+                                <li><span>🎨</span> <span data-en="8 cosmetics of your choice" data-de="8 Cosmetics nach Wahl">8 cosmetics of your choice</span></li>
+                                <li><span>✨</span> <span data-en="All VIP perks included" data-de="Alle VIP-Perks inklusive">All VIP perks included</span></li>
+                                <li><span>🏷️</span> <span data-en="Exclusive MVP tag in chat" data-de="Exklusiver MVP-Tag im Chat">Exclusive MVP tag in chat</span></li>
+                                <li><span>🍪</span> <span data-en="Cookie Clicker Premium access" data-de="Cookie Clicker Premium Zugang">Cookie Clicker Premium access</span></li>
+                                <li><span>🌐</span> <span data-en="Full warp & teleport shortcuts" data-de="Alle Warp- & Teleport-Shortcuts">Full warp & teleport shortcuts</span></li>
+                                <li><span>🚀</span> <span data-en="And much more" data-de="Und vieles mehr">And much more</span></li>
+                            </ul>
+                        </div>
+                        <a href="#redeem" class="btn btn-primary btn-block" data-en="Redeem Code" data-de="Code einlösen">Redeem Code</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Redeem -->
+            <section id="redeem">
+                <div class="section-head">
+                    <div class="section-kicker" data-en="Voucher" data-de="Gutschein">Voucher</div>
+                    <h2 class="section-title" data-en="Redeem Coupon Code" data-de="Gutschein einlösen">Redeem Coupon Code</h2>
+                    <p class="section-subtitle" data-en="Received a VIP or MVP voucher code? Claim it below." data-de="Du hast einen VIP- oder MVP-Gutscheincode erhalten? Löse ihn hier ein.">Received a VIP or MVP voucher code? Claim it below.</p>
+                </div>
+
+                <div class="redeem-box">
+                    <form id="coupon-form">
+                        <div class="form-group">
+                            <label for="mc-username" data-en="Minecraft Username" data-de="Minecraft-Name">Minecraft Username</label>
+                            <input type="text" id="mc-username" class="form-control" placeholder="e.g. Steve123" data-en-placeholder="e.g. Steve123" data-de-placeholder="z. B. Steve123" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="coupon-code" data-en="Voucher Code" data-de="Gutschein-Code">Voucher Code</label>
+                            <input type="text" id="coupon-code" class="form-control" placeholder="Enter code" data-en-placeholder="Enter code" data-de-placeholder="Code eingeben" required style="text-transform: uppercase;">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" data-en="Activate Code" data-de="Code aktivieren">Activate Code</button>
+                    </form>
+                    <div id="redeem-message" role="status"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 MEJT Minecraft Network · <strong>mejt.bunix.de</strong></p>
+            <div class="links">
+                <a href="#impressum" data-legal="impressum" data-en="Legal Notice" data-de="Impressum">Legal Notice</a>
+                <a href="#datenschutz" data-legal="datenschutz" data-en="Privacy Policy" data-de="Datenschutz">Privacy Policy</a>
+                <a href="#agb" data-legal="agb" data-en="Terms (AGB)" data-de="AGB">Terms (AGB)</a>
+                <a href="https://sites.google.com/view/mejt-minecraftserver/agbs" target="_blank" rel="noopener" data-en="Server Rules" data-de="Serverregeln">Server Rules</a>
+                <a href="https://discord.com/invite/8ZeQGhSGq6" target="_blank" rel="noopener">Discord Support</a>
+            </div>
+            <p style="margin-top:14px;font-size:.78rem;opacity:.7" data-en="MEJT is an unofficial fan project and not affiliated with Mojang Studios or Microsoft." data-de="MEJT ist ein inoffizielles Fan-Projekt und steht in keiner Verbindung zu Mojang Studios oder Microsoft.">MEJT is an unofficial fan project and not affiliated with Mojang Studios or Microsoft.</p>
+        </div>
+    </footer>
+
+    <!-- Explore detail modal -->
+    <dialog class="modal" id="explore-modal" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+        <img class="gallery-main" id="modal-main-img" alt="">
+        <div class="thumbs" id="modal-thumbs"></div>
+        <div class="modal-body">
+            <h3 id="modal-title"></h3>
+            <div class="modal-tagline" id="modal-tagline"></div>
+            <p class="desc" id="modal-desc"></p>
+        </div>
+    </dialog>
+
+    <dialog class="legal" id="legal-modal" aria-label="Legal">
+        <div class="legal-top">
+            <div class="legal-tabs" id="legal-tabs"></div>
+            <button class="adm-btn" id="legal-close" aria-label="Close">✕</button>
+        </div>
+        <div class="legal-body" id="legal-body"></div>
+    </dialog>
+
+    <dialog class="admin" id="admin-modal" aria-label="Admin">
+        <div class="adm-top">
+            <h3>⚙ MEJT ADMIN</h3>
+            <div class="adm-user" id="adm-user"></div>
+            <button class="adm-btn" id="adm-close" aria-label="Close">✕</button>
+        </div>
+        <div id="adm-root" style="display:flex;flex-direction:column;flex:1;min-height:0;"></div>
+    </dialog>
+
+    <button id="to-top" aria-label="Back to top">↑</button>
+    <div class="toast" id="toast" role="status"></div>
+
+    <!-- ==========================================================================
+         GOOGLE / FIREBASE KONFIGURATION (für Admin-Panel, Gutscheine, Explore-Inhalte)
+         1. console.firebase.google.com -> Projekt -> Web-App hinzufügen -> Config hier eintragen
+         2. adminEmails: Google-Konten, die das Admin-Panel nutzen dürfen
+         Solange hier "DEIN_..." steht, läuft die Seite ganz normal ohne Datenbank.
+         (Der apiKey von Firebase ist öffentlich und darf im Quelltext stehen – die Sicherheit
+          kommt von den Regeln in firestore.rules.)
+         ========================================================================== -->
+    <script>
+    window.MEJT_CONFIG = {
+      firebase: {
+        apiKey: "DEIN_API_KEY",
+        authDomain: "DEIN-PROJEKT.firebaseapp.com",
+        projectId: "DEIN-PROJEKT",
+        appId: "DEINE_APP_ID"
+      },
+      adminEmails: ["deine-google-mail@gmail.com"]
+    };
+    </script>
+    <script type="module">
+    (async () => {
+        const cfg = (window.MEJT_CONFIG || {}).firebase;
+        if (!cfg || !cfg.apiKey || /^DEIN/i.test(cfg.apiKey)) return;
+        try {
+            const base = 'https://www.gstatic.com/firebasejs/10.14.1/';
+            const [app, auth, fs] = await Promise.all([
+                import(base + 'firebase-app.js'), import(base + 'firebase-auth.js'), import(base + 'firebase-firestore.js')
+            ]);
+            const a = app.initializeApp(cfg);
+            window.FB = { auth: auth.getAuth(a), db: fs.getFirestore(a), a: auth, fs: fs };
+            window.dispatchEvent(new Event('fb-ready'));
+        } catch (err) {
+            console.error('Firebase konnte nicht geladen werden:', err);
+            window.FB_ERROR = err;
+            window.dispatchEvent(new Event('fb-error'));
+        }
+    })();
+    </script>
+
+    <!-- ==========================================================================
+         EXPLORE POSSIBILITIES – HIER BEARBEITEN
+         Einen Block kopieren, einfügen und anpassen. Die Seite baut die Karten automatisch.
+         - title / tagline / description : Text auf Englisch (en) und Deutsch (de)
+         - images : Bildpfade (erstes Bild = Titelbild), z. B. in assets/explore/ ablegen.
+                    Fehlt ein Bild, wird automatisch ein Platzhalter angezeigt.
+         - tags   : kleine Labels auf der Karte (optional)
+         ========================================================================== -->
+    <script>
+    window.MEJT_EXPLORE = {
+
+      gamemodes: [
+        {
+          title:       { en: "Bedwars", de: "Bedwars" },
+          tagline:     { en: "Defend your bed, destroy the others.", de: "Verteidige dein Bett, zerstöre die anderen." },
+          description: {
+            en: "Classic team PvP: gather resources, upgrade your base and eliminate every rival bed. Replace this text with your own description of the mode.",
+            de: "Klassisches Team-PvP: Sammle Ressourcen, rüste deine Basis auf und zerstöre die Betten der Gegner. Ersetze diesen Text durch deine eigene Beschreibung."
+          },
+          images: ["assets/explore/bedwars1.jpg", "assets/explore/bedwars2.jpg"],
+          tags: ["PvP", "Teams"]
+        },
+        {
+          title:       { en: "Cookie Clicker", de: "Cookie Clicker" },
+          tagline:     { en: "Click, upgrade, climb the ranking.", de: "Klicken, upgraden, im Ranking aufsteigen." },
+          description: {
+            en: "in-game clicker game with Cookie’s",
+            de: "ins spiel eingebautes Clicker spiel mit Keksen"
+          },
+          images: ["assets/explore/cookie.jpg"],
+          tags: ["Casual"]
+        }
+        // ,{ ...weiterer Gamemode... }
+      ],
+
+      worlds: [
+        {
+          title:       { en: "Main Lobby", de: "Haupt-Lobby" },
+          tagline:     { en: "Your hub for everything on MEJT.", de: "Dein Startpunkt für alles auf MEJT." },
+          description: {
+            en: "a lobby with everything you need.",
+            de: "Eine Lobby mit allem was du benötigst."
+          },
+          images: ["assets/lobby.png"],
+          tags: ["Spawn"]
+        },
+        {
+          title:       { en: "Friendly Survival World", de: "Friedliche Survival-Welt" },
+          tagline:     { en: "Build, explore and thrive.", de: "Bauen, entdecken, überleben." },
+          description: {
+            en: "Tell players about rules, size, special biomes or events of this world.",
+            de: "Erzähle den Spielern von Regeln, Größe, besonderen Biomen oder Events dieser Welt."
+          },
+          images: ["assets/explore/survival-1.jpg"],
+          tags: ["Survival"]
+        }
+        // ,{ ...weitere Welt... }
+      ]
+
+    };
+    </script>
+
+    <script>
+        /* ======================= 1. LANGUAGE ======================= */
+        let currentLang = 'en';
+        try { currentLang = localStorage.getItem('mejt_lang') || 'en'; } catch (e) {}
+
+        function t(obj) {
+            if (!obj) return '';
+            if (typeof obj === 'string') return obj;
+            return obj[currentLang] || obj.en || obj.de || '';
+        }
+
+        function updateLanguageUI() {
+            document.documentElement.lang = currentLang;
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const val = (currentLang === 'de' && el.getAttribute('data-de')) ? el.getAttribute('data-de') : el.getAttribute('data-en');
+                el.innerHTML = val;
+            });
+            document.querySelectorAll('[data-en-placeholder]').forEach(input => {
+                input.placeholder = (currentLang === 'de' && input.getAttribute('data-de-placeholder'))
+                    ? input.getAttribute('data-de-placeholder') : input.getAttribute('data-en-placeholder');
+            });
+            document.getElementById('lang-btn-text').innerText = currentLang === 'en' ? 'DE' : 'EN';
+            renderExplore();
+            if (document.getElementById('explore-modal').open && currentItem) fillModal(currentItem);
+            if (typeof refreshLegal === 'function') refreshLegal();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'de' : 'en';
+            try { localStorage.setItem('mejt_lang', currentLang); } catch (e) {}
+            updateLanguageUI();
+        }
+
+        /* ======================= 2. MOBILE MENU ======================= */
+        const nav = document.getElementById('main-nav');
+        const menuBtn = document.getElementById('menu-toggle');
+        menuBtn.addEventListener('click', () => {
+            const open = nav.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', open);
+        });
+        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false);
+        }));
+
+        /* ======================= 3. COPY IP + TOAST ======================= */
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2600);
+        }
+        function copyIP(ip) {
+            const done = () => {
+                showToast(currentLang === 'de' ? 'IP kopiert: ' + ip : 'IP copied: ' + ip);
+                const box = document.querySelector('.ip-box'), lbl = box && box.querySelector('.ip-copy');
+                if (box && lbl) {
+                    box.classList.add('copied'); lbl.textContent = '✓';
+                    setTimeout(() => { box.classList.remove('copied'); lbl.innerHTML = lbl.getAttribute(currentLang === 'de' ? 'data-de' : 'data-en'); }, 1800);
+                }
+            };
+            if (navigator.clipboard) { navigator.clipboard.writeText(ip).then(done).catch(done); } else { done(); }
+        }
+
+        /* ======================= 4. EXPLORE POSSIBILITIES ======================= */
+        const DEFAULT_EXPLORE = window.MEJT_EXPLORE || { gamemodes: [], worlds: [] };
+        let EXPLORE = DEFAULT_EXPLORE;
+        let currentTab = 'gamemodes';
+        let currentItem = null;
+
+        function placeholderImg(label) {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500">
+                <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#2a1140"/><stop offset="1" stop-color="#0e2a45"/></linearGradient></defs>
+                <rect width="800" height="500" fill="url(#g)"/>
+                <text x="400" y="270" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="rgba(255,255,255,.55)" text-anchor="middle">${label.replace(/[<&>]/g, '')}</text></svg>`;
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+
+        function setImg(img, src, label) {
+            img.onerror = () => { img.onerror = null; img.src = placeholderImg(label); };
+            img.src = src || placeholderImg(label);
+        }
+
+        function renderExplore() {
+            const grid = document.getElementById('explore-grid');
+            grid.innerHTML = '';
+            document.querySelectorAll('.tab').forEach(tab => tab.setAttribute('aria-selected', tab.dataset.tab === currentTab));
+
+            const items = EXPLORE[currentTab] || [];
+            if (!items.length) {
+                const p = document.createElement('p');
+                p.className = 'empty';
+                p.textContent = currentLang === 'de' ? 'Hier folgen bald Inhalte.' : 'Content coming soon.';
+                grid.appendChild(p);
+                return;
+            }
+
+            items.forEach(item => {
+                const title = t(item.title);
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = 'card reveal';
+                card.style.setProperty('--d', (grid.children.length * 0.08) + 's');
+
+                const wrap = document.createElement('div');
+                wrap.className = 'card-img-wrap';
+                const img = document.createElement('img');
+                img.className = 'card-img';
+                img.loading = 'lazy';
+                img.alt = title;
+                setImg(img, (item.images || [])[0], title);
+                wrap.appendChild(img);
+
+                const body = document.createElement('div');
+                body.className = 'card-body';
+                const h = document.createElement('div'); h.className = 'card-title'; h.textContent = title;
+                const tl = document.createElement('div'); tl.className = 'card-tagline'; tl.textContent = t(item.tagline);
+                body.append(h, tl);
+
+                if (item.tags && item.tags.length) {
+                    const tags = document.createElement('div'); tags.className = 'tags';
+                    item.tags.forEach(x => { const s = document.createElement('span'); s.className = 'tag'; s.textContent = x; tags.appendChild(s); });
+                    body.appendChild(tags);
+                }
+                const more = document.createElement('span');
+                more.className = 'card-more';
+                more.textContent = currentLang === 'de' ? 'Mehr erfahren →' : 'Learn more →';
+                body.appendChild(more);
+
+                card.append(wrap, body);
+                card.addEventListener('click', () => openModal(item));
+                grid.appendChild(card);
+            });
+            if (typeof observeReveals === 'function') observeReveals();
+        }
+
+        document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+            currentTab = tab.dataset.tab;
+            renderExplore();
+        }));
+
+        /* Modal */
+        const modal = document.getElementById('explore-modal');
+        function fillModal(item) {
+            const title = t(item.title);
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-tagline').textContent = t(item.tagline);
+            document.getElementById('modal-desc').textContent = t(item.description);
+
+            const main = document.getElementById('modal-main-img');
+            const thumbs = document.getElementById('modal-thumbs');
+            thumbs.innerHTML = '';
+            const images = (item.images && item.images.length) ? item.images : [null];
+            main.alt = title;
+            setImg(main, images[0], title);
+
+            if (images.length > 1) {
+                images.forEach((src, i) => {
+                    const th = document.createElement('img');
+                    th.className = 'thumb' + (i === 0 ? ' active' : '');
+                    th.alt = title + ' ' + (i + 1);
+                    setImg(th, src, title);
+                    th.addEventListener('click', () => {
+                        setImg(main, src, title);
+                        thumbs.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
+                        th.classList.add('active');
+                    });
+                    thumbs.appendChild(th);
+                });
+                thumbs.style.display = 'flex';
+            } else {
+                thumbs.style.display = 'none';
+            }
+        }
+        function openModal(item) {
+            currentItem = item;
+            fillModal(item);
+            modal.showModal();
+        }
+        document.getElementById('modal-close').addEventListener('click', () => modal.close());
+        modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+        modal.addEventListener('close', () => { currentItem = null; });
+
+        /* ======================= 5. COUPONS ======================= */
+        // HINWEIS: Alles in dieser Datei ist öffentlich einsehbar (GitHub Pages).
+        // Codes und Webhook-URL sind daher nicht geheim – siehe Hinweise im Chat.
+        const DISCORD_WEBHOOK_URL = "HIER_DEIN_DISCORD_WEBHOOK_LINK_EINFUEGEN";
+
+        const VALID_COUPONS = {
+            "MEJT2026": { rank: "VIP", description: "Free VIP Access" },
+            "MEJT-VIP-FREE": { rank: "VIP", description: "VIP Rank Code" },
+            "MEJT-MVP-CREW": { rank: "MVP", description: "MVP Elite Rank Code" },
+            "WELCOME-MEJT": { rank: "VIP", description: "Welcome Gift VIP" }
+        };
+
+        document.getElementById("coupon-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const username = document.getElementById("mc-username").value.trim();
+            const codeInput = document.getElementById("coupon-code").value.trim().toUpperCase();
+            const box = document.getElementById("redeem-message");
+            box.style.display = "none";
+            box.className = "";
+
+            let result;
+            const btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            try {
+                if (window.FB) result = await redeemRemote(username, codeInput);
+                else if (VALID_COUPONS[codeInput]) result = { ok: true, rank: VALID_COUPONS[codeInput].rank };
+                else result = { ok: false, reason: 'invalid' };
+            } catch (err) {
+                console.error(err);
+                result = { ok: false, reason: 'error' };
+            }
+            btn.disabled = false;
+
+            if (result.ok) {
+                const rank = result.rank;
+                box.className = "alert-success";
+                box.innerHTML = currentLang === 'de'
+                    ? `<strong>Erfolg!</strong> Code für den <strong>${rank}-Rang</strong> wurde eingelöst.<br>Dein Rang wird dir in Kürze freigeschaltet. Führe im Spiel zusätzlich <code>/redeem (code)</code> aus.`
+                    : `<strong>Success!</strong> Code redeemed for <strong>${rank} rank</strong>.<br>Your rank will be granted shortly. Also run <code>/redeem (code)</code> on our Minecraft server.`;
+                box.style.display = "block";
+                await sendDiscordNotification(username, codeInput, rank);
+                this.reset();
+            } else {
+                const msgs = {
+                    invalid: ['<strong>Ungültiger Code.</strong> Bitte prüfe deine Eingabe oder kontaktiere das Team auf Discord.', '<strong>Invalid code.</strong> Please check your input or contact support on Discord.'],
+                    used:    ['<strong>Code bereits aufgebraucht.</strong> Dieser Code wurde schon eingelöst.', '<strong>Code already used.</strong> This code has been fully redeemed.'],
+                    error:   ['<strong>Fehler.</strong> Bitte versuche es später erneut oder kontaktiere das Team auf Discord.', '<strong>Error.</strong> Please try again later or contact support on Discord.']
+                };
+                box.className = "alert-error";
+                box.innerHTML = msgs[result.reason || 'invalid'][currentLang === 'de' ? 0 : 1];
+                box.style.display = "block";
+            }
+        });
+
+        async function sendDiscordNotification(username, code, rank) {
+            if (!DISCORD_WEBHOOK_URL || DISCORD_WEBHOOK_URL.includes("HIER_DEIN_DISCORD_WEBHOOK")) return;
+            const payload = {
+                embeds: [{
+                    title: "🎁 Neuer Gutschein eingelöst!",
+                    color: rank === "MVP" ? 66319 : 16711935,
+                    fields: [
+                        { name: "🎮 Minecraft Username", value: `\`${username}\``, inline: true },
+                        { name: "🔑 Code", value: `\`${code}\``, inline: true },
+                        { name: "⭐ Rang", value: `**${rank}**`, inline: true }
+                    ],
+                    footer: { text: "MEJT Network • mejt.bunix.de" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+            try {
+                await fetch(DISCORD_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+            } catch (err) { console.error("Discord notification failed:", err); }
+        }
+
+        /* ======================= 6. SUBTLE PARTICLES ======================= */
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            const colors = ['#e040fb', '#38a9ff', '#ffd54a', '#34d399'];
+            const particles = [];
+            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resize); resize();
+            for (let i = 0; i < 32; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                    r: Math.random() * 1.6 + 0.6, c: colors[Math.floor(Math.random() * colors.length)],
+                    vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
+                    a: Math.random() * 0.5 + 0.2
+                });
+            }
+            (function loop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+                    if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.globalAlpha = p.a; ctx.fillStyle = p.c; ctx.fill();
+                });
+                requestAnimationFrame(loop);
+            })();
+        })();
+
+        /* ======================= 7. EFFECTS ======================= */
+        const canHover = window.matchMedia('(hover: hover)').matches;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let revealObserver = null;
+
+        // Scroll reveal
+        function observeReveals() {
+            const els = document.querySelectorAll('.reveal:not(.in)');
+            if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+            if (!revealObserver) {
+                revealObserver = new IntersectionObserver(entries => {
+                    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); revealObserver.unobserve(en.target); } });
+                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            }
+            els.forEach(e => revealObserver.observe(e));
+        }
+        function setupStaticReveals() {
+            document.querySelectorAll('.hero-content, .hero-media, .join-grid .panel, .section-head, .explore-tabs, .rank-card, .redeem-box').forEach((el, i) => {
+                el.classList.add('reveal');
+                if (el.matches('.panel, .rank-card')) el.style.setProperty('--d', ((i % 2) * 0.12) + 's');
+            });
+            observeReveals();
+        }
+
+        // Card spotlight & 3D tilt
+        if (canHover) {
+            const TILT = '.card, .rank-card, .mascot-card';
+            document.addEventListener('pointermove', e => {
+                const el = e.target.closest && e.target.closest('.card, .rank-card, .panel, .redeem-box, .mascot-card');
+                if (!el) return;
+                const r = el.getBoundingClientRect();
+                const x = e.clientX - r.left, y = e.clientY - r.top;
+                el.style.setProperty('--mx', x + 'px');
+                el.style.setProperty('--my', y + 'px');
+                if (!reduceMotion && el.matches(TILT)) {
+                    const rx = ((y / r.height) - 0.5) * -8, ry = ((x / r.width) - 0.5) * 8;
+                    const lift = el.matches('.mascot-card') ? '' : ' translateY(-6px)';
+                    el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)${lift}`;
+                }
+            });
+            document.addEventListener('pointerout', e => {
+                const el = e.target.closest && e.target.closest(TILT);
+                if (el && !el.contains(e.relatedTarget)) el.style.transform = '';
+            });
+        }
+
+        // Button ripple
+        document.addEventListener('click', e => {
+            const btn = e.target.closest && e.target.closest('.btn, .tab');
+            if (!btn || reduceMotion) return;
+            const r = btn.getBoundingClientRect(), size = Math.max(r.width, r.height);
+            const s = document.createElement('span');
+            s.className = 'ripple';
+            s.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - r.left - size / 2}px;top:${e.clientY - r.top - size / 2}px`;
+            btn.appendChild(s);
+            setTimeout(() => s.remove(), 650);
+        });
+
+        // Scroll: progress bar, header, back-to-top, active nav link
+        (function () {
+            const bar = document.getElementById('progress');
+            const header = document.querySelector('.site-header');
+            const toTop = document.getElementById('to-top');
+            const links = [...document.querySelectorAll('nav a.nav-link[href^="#"]')];
+            let ticking = false;
+            function onScroll() {
+                const max = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+                header.classList.toggle('scrolled', window.scrollY > 20);
+                toTop.classList.toggle('show', window.scrollY > 600);
+                let active = '#top';
+                links.forEach(l => {
+                    const target = document.querySelector(l.getAttribute('href'));
+                    if (target && l.getAttribute('href') !== '#top' && target.getBoundingClientRect().top <= 160) active = l.getAttribute('href');
+                });
+                links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === active));
+                ticking = false;
+            }
+            window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
+            toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            onScroll();
+        })();
+
+        /* ======================= 8. CURSOR TRAIL ======================= */
+        (function () {
+            const c = document.getElementById('trail-canvas');
+            if (!c || !canHover || reduceMotion) return;
+            const ctx = c.getContext('2d');
+            let w = 0, h = 0;
+            function resize() {
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                w = window.innerWidth; h = window.innerHeight;
+                c.width = w * dpr; c.height = h * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const pts = [];
+            const LIFE = 600;          // wie lange die Spur sichtbar bleibt (ms)
+            let running = false;
+
+            window.addEventListener('pointermove', e => {
+                if (e.pointerType && e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
+                const now = performance.now();
+                if (pts.length && now - pts[pts.length - 1].t > 120) pts.length = 0;
+                pts.push({ x: e.clientX, y: e.clientY, t: now });
+                if (pts.length > 80) pts.shift();
+                if (!running) { running = true; requestAnimationFrame(draw); }
+            }, { passive: true });
+
+            function draw(now) {
+                ctx.clearRect(0, 0, w, h);
+                while (pts.length && now - pts[0].t > LIFE) pts.shift();
+                if (pts.length < 2) { running = false; return; }
+                ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+                for (let i = 1; i < pts.length; i++) {
+                    const a = pts[i - 1], b = pts[i];
+                    const life = 1 - (now - b.t) / LIFE;
+                    if (life <= 0) continue;
+                    const prog = i / pts.length;
+                    const hue = 200 + prog * 100;      // blau (alt) -> magenta (neu)
+                    ctx.strokeStyle = `hsla(${hue},95%,66%,${Math.min(1, life) * 0.85})`;
+                    ctx.shadowColor = `hsla(${hue},95%,60%,${life})`;
+                    ctx.shadowBlur = 14;
+                    ctx.lineWidth = 1 + 7 * life * prog;
+                    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+                }
+                requestAnimationFrame(draw);
+            }
+        })();
+
+        /* ======================= 9. FIREBASE (GOOGLE) + ADMIN PANEL ======================= */
+        const MCFG = window.MEJT_CONFIG || {};
+        const ADMIN_EMAILS = (MCFG.adminEmails || []).map(x => String(x).toLowerCase());
+        const fbConfigured = !!(MCFG.firebase && MCFG.firebase.apiKey && !/^DEIN/i.test(MCFG.firebase.apiKey));
+        let adminUser = null;
+
+        function fbReady(fn) { if (window.FB) fn(); else window.addEventListener('fb-ready', fn, { once: true }); }
+        function isAdmin(u) { return !!(u && u.email && u.emailVerified && ADMIN_EMAILS.includes(u.email.toLowerCase())); }
+
+        /* ---- Explore-Inhalte aus Firestore (fällt auf die Beispiele im Code zurück) ---- */
+        async function loadRemoteExplore() {
+            if (!window.FB) return;
+            try {
+                const { collection, getDocs } = FB.fs;
+                const snap = await getDocs(collection(FB.db, 'explore'));
+                if (snap.empty) { EXPLORE = DEFAULT_EXPLORE; renderExplore(); return; }
+                const data = { gamemodes: [], worlds: [] };
+                snap.forEach(d => { const x = d.data(); if (data[x.type]) data[x.type].push(Object.assign({ id: d.id }, x)); });
+                Object.keys(data).forEach(k => data[k].sort((a, b) => (a.order || 0) - (b.order || 0)));
+                EXPLORE = data;
+                renderExplore();
+            } catch (err) { console.warn('Explore konnte nicht aus Firestore geladen werden:', err); }
+        }
+
+        /* ---- Gutschein einlösen (Firestore-Transaktion) ---- */
+        async function redeemRemote(username, rawCode) {
+            const code = rawCode.toUpperCase();
+            if (!/^[A-Z0-9_-]{3,64}$/.test(code)) return { ok: false, reason: 'invalid' };
+            const { doc, collection, runTransaction, serverTimestamp } = FB.fs;
+            const ref = doc(FB.db, 'coupons', code);
+            return runTransaction(FB.db, async tx => {
+                const snap = await tx.get(ref);
+                if (!snap.exists()) return { ok: false, reason: 'invalid' };
+                const c = snap.data();
+                if (c.active === false) return { ok: false, reason: 'invalid' };
+                const uses = c.uses || 0;
+                if (c.maxUses > 0 && uses >= c.maxUses) return { ok: false, reason: 'used' };
+                tx.update(ref, { uses: uses + 1 });
+                tx.set(doc(collection(FB.db, 'redemptions')), { username: username.slice(0, 32), code, rank: c.rank, createdAt: serverTimestamp() });
+                return { ok: true, rank: c.rank };
+            });
+        }
+
+        /* ---- kleine DOM-Hilfe (setzt Text immer als Text, nie als HTML) ---- */
+        function mk(tag, props, ...kids) {
+            const el = document.createElement(tag);
+            Object.entries(props || {}).forEach(([k, v]) => {
+                if (v == null || v === false) return;
+                if (k === 'class') el.className = v;
+                else if (k === 'text') el.textContent = v;
+                else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
+                else if (v === true) el.setAttribute(k, '');
+                else el.setAttribute(k, v);
+            });
+            kids.flat().forEach(c => { if (c != null && c !== false) el.append(c.nodeType ? c : document.createTextNode(c)); });
+            return el;
+        }
+
+        const admModal = document.getElementById('admin-modal');
+        const admRoot = document.getElementById('adm-root');
+        const admUserBox = document.getElementById('adm-user');
+        const gearBtn = document.getElementById('gear-btn');
+        let admTab = 'explore', admType = 'gamemodes';
+        let flashEl = mk('div', { class: 'adm-msg' });
+
+        function flash(text, ok) {
+            flashEl.className = 'adm-msg ' + (ok ? 'ok' : 'err');
+            flashEl.textContent = text || '';
+        }
+        function updateGear() { gearBtn.classList.toggle('on', isAdmin(adminUser)); }
+
+        gearBtn.addEventListener('click', () => { renderAdmin(); if (!admModal.open) admModal.showModal(); });
+        document.getElementById('adm-close').addEventListener('click', () => admModal.close());
+        admModal.addEventListener('click', e => { if (e.target === admModal) admModal.close(); });
+
+        window.addEventListener('fb-ready', () => {
+            FB.a.onAuthStateChanged(FB.auth, u => { adminUser = u; updateGear(); if (admModal.open) renderAdmin(); });
+            loadRemoteExplore();
+            if (admModal.open) renderAdmin();
+        }, { once: true });
+        window.addEventListener('fb-error', () => { if (admModal.open) renderAdmin(); });
+
+        function renderAdmin() {
+            admUserBox.replaceChildren();
+            if (!fbConfigured) { admRoot.replaceChildren(setupView()); return; }
+            if (window.FB_ERROR) { admRoot.replaceChildren(centerBox('Verbindung fehlgeschlagen', 'Firebase konnte nicht geladen werden. Prüfe die Konfiguration und die Browser-Konsole.')); return; }
+            if (!window.FB) { admRoot.replaceChildren(centerBox('Verbinde …', 'Die Verbindung zu Google wird aufgebaut.')); return; }
+            if (!adminUser) { admRoot.replaceChildren(loginView()); return; }
+            if (!isAdmin(adminUser)) { admRoot.replaceChildren(denyView()); return; }
+            admUserBox.append(mk('span', { text: adminUser.email }), mk('button', { class: 'adm-btn', text: 'Abmelden', onclick: () => FB.a.signOut(FB.auth) }));
+            panelView();
+        }
+
+        function centerBox(title, text, ...extra) {
+            return mk('div', { class: 'adm-body' }, mk('div', { class: 'adm-center' }, mk('h4', { text: title }), mk('p', { text }), ...extra));
+        }
+
+        function setupView() {
+            return mk('div', { class: 'adm-body' }, mk('div', { class: 'adm-center' },
+                mk('h4', { text: 'Google-Server einrichten' }),
+                mk('p', { text: 'Das Admin-Panel braucht ein kostenloses Firebase-Projekt (Google). Einmalig einrichten:' }),
+                mk('ol', {},
+                    mk('li', { text: 'console.firebase.google.com → Projekt erstellen → Web-App (</>) hinzufügen' }),
+                    mk('li', { text: 'Authentication → Anmeldemethode → Google aktivieren' }),
+                    mk('li', { text: 'Authentication → Einstellungen → Autorisierte Domains: deine GitHub-Pages-Domain eintragen' }),
+                    mk('li', { text: 'Firestore Database erstellen und den Inhalt von firestore.rules unter „Regeln“ einfügen (vorher deine E-Mail eintragen)' }),
+                    mk('li', { text: 'Die Config in index.html bei MEJT_CONFIG eintragen (firebase + adminEmails)' }))));
+        }
+
+        function loginView() {
+            const msg = mk('div', { class: 'adm-msg err' });
+            return centerBox('Admin-Login', 'Melde dich mit dem Google-Konto an, das als Admin hinterlegt ist.',
+                mk('button', {
+                    class: 'btn btn-primary', text: 'Mit Google anmelden',
+                    onclick: async () => {
+                        try { await FB.a.signInWithPopup(FB.auth, new FB.a.GoogleAuthProvider()); }
+                        catch (err) { if (err && err.code !== 'auth/popup-closed-by-user') msg.textContent = 'Anmeldung fehlgeschlagen: ' + (err.code || err.message); }
+                    }
+                }), msg);
+        }
+
+        function denyView() {
+            return centerBox('Kein Zugriff', 'Das Konto ' + adminUser.email + ' ist nicht als Admin freigeschaltet.',
+                mk('button', { class: 'adm-btn', text: 'Abmelden', onclick: () => FB.a.signOut(FB.auth) }));
+        }
+
+        function panelView() {
+            const tabs = mk('div', { class: 'adm-tabs' });
+            [['explore', 'Explore'], ['coupons', 'Gutscheine'], ['redemptions', 'Einlösungen']].forEach(([k, label]) =>
+                tabs.append(mk('button', { class: 'adm-tab' + (admTab === k ? ' active' : ''), text: label, onclick: () => { admTab = k; flash(''); renderAdmin(); } })));
+            const body = mk('div', { class: 'adm-body' });
+            flashEl = mk('div', { class: 'adm-msg', style: 'padding:8px 20px 0' });
+            admRoot.replaceChildren(tabs, flashEl, body);
+            ({ explore: tabExplore, coupons: tabCoupons, redemptions: tabRedemptions })[admTab](body)
+                .catch(err => { console.error(err); flash('Fehler: ' + (err.code || err.message), false); });
+        }
+
+        async function guarded(btn, fn) {
+            if (btn) btn.disabled = true;
+            try { await fn(); }
+            catch (err) { console.error(err); flash('Fehler: ' + (err.code || err.message), false); }
+            finally { if (btn) btn.disabled = false; }
+        }
+
+        /* ---------- Tab: Explore ---------- */
+        async function tabExplore(body) {
+            body.replaceChildren(mk('p', { class: 'adm-note', text: 'Lade …' }));
+            const { collection, getDocs, doc, deleteDoc, writeBatch } = FB.fs;
+            const snap = await getDocs(collection(FB.db, 'explore'));
+            const all = [];
+            snap.forEach(d => all.push(Object.assign({ id: d.id }, d.data())));
+            const list = all.filter(x => x.type === admType).sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            const bar = mk('div', { class: 'adm-bar' },
+                [['gamemodes', 'Spielmodi'], ['worlds', 'Welten']].map(([k, l]) =>
+                    mk('button', { class: 'adm-btn' + (admType === k ? ' primary' : ''), text: l, onclick: () => { admType = k; tabExplore(body); } })),
+                mk('span', { class: 'spacer' }),
+                !all.length ? mk('button', { class: 'adm-btn', text: 'Beispiele importieren', onclick: e => guarded(e.target, async () => {
+                    const batch = writeBatch(FB.db);
+                    ['gamemodes', 'worlds'].forEach(type => (DEFAULT_EXPLORE[type] || []).forEach((it, i) =>
+                        batch.set(doc(collection(FB.db, 'explore')), Object.assign({}, it, { type, order: (i + 1) * 10 }))));
+                    await batch.commit(); await loadRemoteExplore(); flash('Beispiele importiert.', true); tabExplore(body);
+                }) }) : null,
+                mk('button', { class: 'adm-btn primary', text: '+ Neu', onclick: () => editExplore(body, null, list) }));
+
+            const rows = list.length ? list.map((item, i) => {
+                const thumb = mk('img', { class: 'adm-thumb', alt: '' });
+                setImg(thumb, (item.images || [])[0], t(item.title));
+                const move = dir => guarded(null, async () => {
+                    const j = i + dir; if (j < 0 || j >= list.length) return;
+                    const arr = list.slice(); [arr[i], arr[j]] = [arr[j], arr[i]];
+                    const batch = writeBatch(FB.db);
+                    arr.forEach((x, n) => batch.update(doc(FB.db, 'explore', x.id), { order: (n + 1) * 10 }));
+                    await batch.commit(); await loadRemoteExplore(); tabExplore(body);
+                });
+                return mk('div', { class: 'adm-row' }, thumb,
+                    mk('div', { class: 'grow' }, mk('b', { text: (item.title && (item.title.de || item.title.en)) || '(ohne Titel)' }),
+                        mk('small', { text: (item.tagline && (item.tagline.de || item.tagline.en)) || '' })),
+                    mk('button', { class: 'adm-btn', text: '↑', title: 'Nach oben', onclick: () => move(-1) }),
+                    mk('button', { class: 'adm-btn', text: '↓', title: 'Nach unten', onclick: () => move(1) }),
+                    mk('button', { class: 'adm-btn', text: 'Bearbeiten', onclick: () => editExplore(body, item, list) }),
+                    mk('button', { class: 'adm-btn danger', text: 'Löschen', onclick: e => { if (!confirm('„' + ((item.title && (item.title.de || item.title.en)) || 'Eintrag') + '“ wirklich löschen?')) return;
+                        guarded(e.target, async () => { await deleteDoc(doc(FB.db, 'explore', item.id)); await loadRemoteExplore(); flash('Gelöscht.', true); tabExplore(body); }); } }));
+            }) : [mk('p', { class: 'adm-note', text: all.length ? 'Hier ist noch nichts eingetragen.' : 'Noch keine Einträge in Firestore – die Seite zeigt gerade die Beispiele aus dem Code. Mit „Beispiele importieren“ übernimmst du sie zum Bearbeiten, oder lege mit „+ Neu“ etwas an.' })];
+            body.replaceChildren(bar, ...rows);
+        }
+
+        function fileToDataURL(file, maxW = 1100, q = 0.78) {
+            return new Promise((resolve, reject) => {
+                const img = new Image(); const url = URL.createObjectURL(file);
+                img.onload = () => {
+                    const s = Math.min(1, maxW / img.width);
+                    const cv = document.createElement('canvas');
+                    cv.width = Math.round(img.width * s); cv.height = Math.round(img.height * s);
+                    cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+                    URL.revokeObjectURL(url);
+                    resolve(cv.toDataURL('image/jpeg', q));
+                };
+                img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Bild konnte nicht gelesen werden')); };
+                img.src = url;
+            });
+        }
+
+        function editExplore(body, item, list) {
+            const { collection, doc, setDoc, serverTimestamp } = FB.fs;
+            let imgs = item && item.images ? item.images.slice() : [];
+            const v = (o, k) => (o && o[k]) || '';
+            const input = (value, ph) => mk('input', { class: 'form-control', type: 'text', value: value || '', placeholder: ph || '' });
+            const area = (value) => mk('textarea', { class: 'form-control', text: value || '' });
+            const field = (label, el) => mk('div', { class: 'adm-field' }, mk('label', { text: label }), el);
+
+            const type = mk('select', { class: 'form-control' }, mk('option', { value: 'gamemodes', text: 'Spielmodus' }), mk('option', { value: 'worlds', text: 'Welt' }));
+            type.value = item ? item.type : admType;
+            const tEn = input(v(item && item.title, 'en')), tDe = input(v(item && item.title, 'de'));
+            const lEn = input(v(item && item.tagline, 'en')), lDe = input(v(item && item.tagline, 'de'));
+            const dEn = area(v(item && item.description, 'en')), dDe = area(v(item && item.description, 'de'));
+            const tags = input(item && item.tags ? item.tags.join(', ') : '', 'z. B. PvP, Teams');
+
+            const imgBox = mk('div', { class: 'adm-imgs' });
+            function drawImgs() {
+                imgBox.replaceChildren(...imgs.map((src, i) => {
+                    const im = mk('img', { alt: '' }); setImg(im, src, 'Bild');
+                    return mk('div', { class: 'adm-img', title: i === 0 ? 'Titelbild' : '' }, im,
+                        mk('button', { type: 'button', text: '✕', title: 'Entfernen', onclick: () => { imgs.splice(i, 1); drawImgs(); } }),
+                        i > 0 ? mk('button', { type: 'button', text: '★', title: 'Als Titelbild', style: 'right:30px', onclick: () => { imgs.unshift(imgs.splice(i, 1)[0]); drawImgs(); } }) : null);
+                }));
+                if (!imgs.length) imgBox.append(mk('span', { class: 'adm-note', text: 'Noch keine Bilder.' }));
+            }
+            drawImgs();
+            const fileIn = mk('input', { type: 'file', accept: 'image/*', multiple: true, style: 'display:none', onchange: async e => {
+                for (const f of e.target.files) { try { imgs.push(await fileToDataURL(f)); } catch (err) { flash(err.message, false); } }
+                e.target.value = ''; drawImgs();
+            } });
+            const urlIn = input('', 'oder Bildpfad / URL, z. B. assets/explore/bedwars1.jpg');
+
+            const save = mk('button', { class: 'adm-btn primary', text: 'Speichern', onclick: e => guarded(e.target, async () => {
+                if (!tEn.value.trim() && !tDe.value.trim()) { flash('Bitte mindestens einen Titel angeben.', false); return; }
+                if (JSON.stringify(imgs).length > 900000) { flash('Die Bilder sind zusammen zu groß (max. ca. 900 KB). Entferne Bilder oder nutze Bildpfade/URLs.', false); return; }
+                const maxOrder = list.reduce((m, x) => Math.max(m, x.order || 0), 0);
+                const data = {
+                    type: type.value,
+                    order: item ? (item.order || 0) : maxOrder + 10,
+                    title: { en: tEn.value.trim(), de: tDe.value.trim() },
+                    tagline: { en: lEn.value.trim(), de: lDe.value.trim() },
+                    description: { en: dEn.value.trim(), de: dDe.value.trim() },
+                    tags: tags.value.split(',').map(s => s.trim()).filter(Boolean),
+                    images: imgs,
+                    updatedAt: serverTimestamp()
+                };
+                await setDoc(item ? doc(FB.db, 'explore', item.id) : doc(collection(FB.db, 'explore')), data);
+                admType = data.type;
+                await loadRemoteExplore();
+                flash('Gespeichert.', true);
+                tabExplore(body);
+            }) });
+
+            body.replaceChildren(
+                mk('h4', { text: item ? 'Eintrag bearbeiten' : 'Neuer Eintrag', style: "font-family:'Orbitron',sans-serif;margin-bottom:14px" }),
+                field('Typ', type),
+                mk('div', { class: 'adm-grid' }, field('Titel (EN)', tEn), field('Titel (DE)', tDe), field('Kurztext (EN)', lEn), field('Kurztext (DE)', lDe),
+                    field('Beschreibung (EN)', dEn), field('Beschreibung (DE)', dDe)),
+                field('Tags (mit Komma trennen)', tags),
+                mk('div', { class: 'adm-field' }, mk('label', { text: 'Bilder (erstes = Titelbild, ★ setzt das Titelbild)' }), imgBox,
+                    mk('div', { class: 'adm-bar' }, mk('button', { type: 'button', class: 'adm-btn', text: 'Bilder hochladen', onclick: () => fileIn.click() }), fileIn,
+                        urlIn, mk('button', { type: 'button', class: 'adm-btn', text: 'Hinzufügen', onclick: () => { if (urlIn.value.trim()) { imgs.push(urlIn.value.trim()); urlIn.value = ''; drawImgs(); } } }))),
+                mk('p', { class: 'adm-note', text: 'Hochgeladene Bilder werden automatisch verkleinert und direkt in der Datenbank gespeichert (kostenlos, aber begrenzt). Für viele/große Bilder lieber Dateien ins Repo legen und den Pfad angeben.' }),
+                mk('div', { class: 'adm-bar' }, save, mk('button', { class: 'adm-btn', text: 'Abbrechen', onclick: () => tabExplore(body) })));
+        }
+
+        /* ---------- Tab: Gutscheine ---------- */
+        async function tabCoupons(body) {
+            body.replaceChildren(mk('p', { class: 'adm-note', text: 'Lade …' }));
+            const { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, serverTimestamp } = FB.fs;
+            const snap = await getDocs(collection(FB.db, 'coupons'));
+            const rows = []; snap.forEach(d => rows.push(Object.assign({ code: d.id }, d.data())));
+            rows.sort((a, b) => a.code.localeCompare(b.code));
+
+            const code = mk('input', { class: 'form-control', type: 'text', placeholder: 'CODE (A–Z, 0–9, -)', style: 'text-transform:uppercase;max-width:260px' });
+            const rank = mk('select', { class: 'form-control', style: 'max-width:110px' }, mk('option', { value: 'VIP', text: 'VIP' }), mk('option', { value: 'MVP', text: 'MVP' }));
+            const max = mk('input', { class: 'form-control', type: 'number', min: '0', value: '1', style: 'max-width:110px', title: '0 = unbegrenzt' });
+            const gen = () => { const abc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let s = ''; const r = crypto.getRandomValues(new Uint32Array(6)); r.forEach(n => s += abc[n % abc.length]); code.value = 'MEJT-' + rank.value + '-' + s; };
+
+            const form = mk('div', { class: 'adm-bar' }, code, rank, max,
+                mk('button', { class: 'adm-btn', text: 'Zufallscode', onclick: gen }),
+                mk('button', { class: 'adm-btn primary', text: 'Anlegen', onclick: e => guarded(e.target, async () => {
+                    const c = code.value.trim().toUpperCase();
+                    if (!/^[A-Z0-9_-]{3,64}$/.test(c)) { flash('Code: 3–64 Zeichen, nur A–Z, 0–9, - und _.', false); return; }
+                    if ((await getDoc(doc(FB.db, 'coupons', c))).exists()) { flash('Diesen Code gibt es schon.', false); return; }
+                    await setDoc(doc(FB.db, 'coupons', c), { rank: rank.value, maxUses: Math.max(0, parseInt(max.value, 10) || 0), uses: 0, active: true, createdAt: serverTimestamp() });
+                    flash('Code ' + c + ' angelegt.', true); tabCoupons(body);
+                }) }));
+
+            const list = rows.map(c => mk('div', { class: 'adm-row' },
+                mk('div', { class: 'grow' }, mk('b', { text: c.code }), mk('small', { text: (c.uses || 0) + ' / ' + (c.maxUses > 0 ? c.maxUses : '∞') + ' eingelöst' })),
+                mk('span', { class: 'adm-pill ' + c.rank, text: c.rank }),
+                mk('button', { class: 'adm-btn', text: c.active === false ? 'Inaktiv' : 'Aktiv', onclick: e => guarded(e.target, async () => { await updateDoc(doc(FB.db, 'coupons', c.code), { active: c.active === false }); tabCoupons(body); }) }),
+                mk('button', { class: 'adm-btn danger', text: 'Löschen', onclick: e => { if (!confirm('Code ' + c.code + ' löschen?')) return; guarded(e.target, async () => { await deleteDoc(doc(FB.db, 'coupons', c.code)); tabCoupons(body); }); } })));
+
+            body.replaceChildren(
+                mk('p', { class: 'adm-note', text: 'Max. Einlösungen: 0 = unbegrenzt. Sobald Firebase aktiv ist, gelten nur noch diese Codes – die alten Codes im Quelltext werden ignoriert.' }),
+                form, ...(list.length ? list : [mk('p', { class: 'adm-note', text: 'Noch keine Gutscheine angelegt.' })]));
+        }
+
+        /* ---------- Tab: Einlösungen ---------- */
+        async function tabRedemptions(body) {
+            body.replaceChildren(mk('p', { class: 'adm-note', text: 'Lade …' }));
+            const { collection, getDocs, query, orderBy, limit, doc, deleteDoc } = FB.fs;
+            const snap = await getDocs(query(collection(FB.db, 'redemptions'), orderBy('createdAt', 'desc'), limit(100)));
+            const rows = []; snap.forEach(d => rows.push(Object.assign({ id: d.id }, d.data())));
+            const list = rows.map(r => mk('div', { class: 'adm-row' },
+                mk('div', { class: 'grow' }, mk('b', { text: r.username }),
+                    mk('small', { text: r.code + ' · ' + (r.createdAt && r.createdAt.toDate ? r.createdAt.toDate().toLocaleString('de-DE') : '…') })),
+                mk('span', { class: 'adm-pill ' + r.rank, text: r.rank }),
+                mk('button', { class: 'adm-btn danger', text: 'Erledigt / löschen', onclick: e => guarded(e.target, async () => { await deleteDoc(doc(FB.db, 'redemptions', r.id)); tabRedemptions(body); }) })));
+            body.replaceChildren(
+                mk('p', { class: 'adm-note', text: 'Die letzten 100 Einlösungen. Vergib den Rang im Spiel und lösche den Eintrag danach.' }),
+                ...(list.length ? list : [mk('p', { class: 'adm-note', text: 'Noch keine Einlösungen.' })]));
+        }
+
+        /* ======================= 10. IMPRESSUM / AGB / DATENSCHUTZ ======================= */
+        /* Gelb markierte Stellen [ … ] musst du mit deinen echten Angaben ersetzen (siehe LEGAL_DATA). */
+        const LEGAL_DATA = {
+            name:    'Vor- und Nachname',
+            street:  'Straße Hausnummer',
+            city:    'PLZ Ort',
+            country: 'Deutschland',
+            email:   'kontakt@example.de',
+            updated: '04.11.2026'
+        };
+        const LEGAL_DEFAULTS = Object.assign({}, LEGAL_DATA);
+        const ph = s => '<span class="ph">[' + s + ']</span>';
+        // Zeigt den Wert normal an; solange noch der Platzhalter drinsteht, wird er gelb markiert.
+        const F = k => LEGAL_DATA[k] === LEGAL_DEFAULTS[k] ? ph(LEGAL_DATA[k]) : LEGAL_DATA[k];
+        const ADDR = `${F('name')}<br>${F('street')}<br>${F('city')}<br>${F('country')}`;
+        const MAIL = `<a href="mailto:${LEGAL_DATA.email}">${F('email')}</a>`;
+        const RULES_URL = 'https://sites.google.com/view/mejt-minecraftserver/agbs';
+
+        const LEGAL = {
+            impressum: {
+                label: { en: 'Legal Notice', de: 'Impressum' },
+                de: `
+<h2>Impressum</h2>
+<p class="meta">Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>
+<h3>Anbieter</h3>
+<p>${ADDR}</p>
+<h3>Kontakt</h3>
+<p>E-Mail: ${MAIL}<br>Discord: <a href="https://discord.com/invite/8ZeQGhSGq6" target="_blank" rel="noopener">MEJT Discord-Server</a></p>
+<h3>Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</h3>
+<p>${F('name')}, Anschrift wie oben</p>
+<h3>Hinweis zu Minecraft</h3>
+<p>MEJT ist ein inoffizielles, von Fans betriebenes Angebot. Es ist weder von Mojang Studios oder Microsoft genehmigt noch mit diesen verbunden. „Minecraft“ ist eine Marke von Mojang Studios / Microsoft.</p>
+<h3>Verbraucherstreitbeilegung</h3>
+<p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. ${ph('bitte prüfen / anpassen')}</p>
+<h3>Haftung für Inhalte und Links</h3>
+<p>Als Diensteanbieter sind wir für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Für Inhalte externer Seiten, auf die wir verlinken, sind ausschließlich deren Betreiber verantwortlich. Bei Bekanntwerden von Rechtsverletzungen entfernen wir entsprechende Inhalte bzw. Links umgehend.</p>
+<h3>Urheberrecht</h3>
+<p>Die von uns erstellten Inhalte und Werke auf dieser Seite unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Eine Vervielfältigung oder Verwertung außerhalb der Grenzen des Urheberrechts bedarf der Zustimmung der jeweiligen Rechteinhaber.</p>`,
+                en: `
+<h2>Legal Notice</h2>
+<p class="meta">Information pursuant to § 5 German Digital Services Act (DDG)</p>
+<h3>Provider</h3>
+<p>${ADDR}</p>
+<h3>Contact</h3>
+<p>Email: ${MAIL}<br>Discord: <a href="https://discord.com/invite/8ZeQGhSGq6" target="_blank" rel="noopener">MEJT Discord server</a></p>
+<h3>Responsible for content (§ 18 (2) MStV)</h3>
+<p>${F('name')}, address as above</p>
+<h3>Note on Minecraft</h3>
+<p>MEJT is an unofficial, fan-run service. It is neither approved by nor associated with Mojang Studios or Microsoft. “Minecraft” is a trademark of Mojang Studios / Microsoft.</p>
+<h3>Consumer dispute resolution</h3>
+<p>We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board. ${ph('please review / adjust')}</p>
+<h3>Liability for content and links</h3>
+<p>We are responsible for our own content under general law. The operators of linked external sites are solely responsible for their content. If we become aware of legal violations, we will remove the content or links without delay.</p>
+<h3>Copyright</h3>
+<p>Content and works created by us on this site are subject to German copyright law. Third-party contributions are marked as such. Any use beyond the limits of copyright law requires the consent of the respective rights holder.</p>`
+            },
+
+            agb: {
+                label: { en: 'Terms (AGB)', de: 'AGB' },
+                de: `
+<h2>Allgemeine Geschäfts- und Nutzungsbedingungen (AGB)</h2>
+<p class="meta">Stand: ${F('updated')}</p>
+<h3>§ 1 Geltungsbereich und Anbieter</h3>
+<p>Diese Bedingungen gelten für die Nutzung des Minecraft-Servers „MEJT“ (mejt.bunix.de), dieser Website und der damit verbundenen Community-Angebote. Anbieter ist ${F('name')}, ${F('street')}, ${F('city')} („wir“). MEJT ist ein inoffizielles Fan-Angebot und nicht mit Mojang Studios oder Microsoft verbunden.</p>
+<h3>§ 2 Teilnahme und Whitelist</h3>
+<p>Die Teilnahme am Server setzt eine Aufnahme in die Whitelist über Discord oder Signal voraus. Auf Aufnahme besteht kein Rechtsanspruch. Die Nutzung ist kostenlos, soweit nichts anderes angegeben ist. Minderjährige benötigen die Zustimmung ihrer Erziehungsberechtigten. ${ph('Mindestalter festlegen, z. B. 13 Jahre')}</p>
+<h3>§ 3 Regeln und Verhalten</h3>
+<p>Es gelten die <a href="${RULES_URL}" target="_blank" rel="noopener">Serverregeln</a>. Bei Verstößen können wir Verwarnungen aussprechen, Spieler zeitweise oder dauerhaft sperren und aus der Whitelist entfernen. Cheating, Belästigung, Hassrede, das Ausnutzen von Bugs und rechtswidrige Inhalte sind untersagt.</p>
+<h3>§ 4 Ränge (VIP / MVP) und Gutscheincodes</h3>
+<ul>
+<li>Ränge schalten ausschließlich kosmetische bzw. komfortbezogene Vorteile auf dem Server frei. Es besteht kein Anspruch auf bestimmte Inhalte oder deren dauerhafte Verfügbarkeit; wir dürfen Vorteile angemessen anpassen.</li>
+<li>Gutscheincodes können nur über das Formular auf dieser Website bzw. im Spiel eingelöst werden, sind nur im angegebenen Umfang (z. B. einmalig) gültig, nicht übertragbar, haben keinen Barwert und werden nicht ausgezahlt.</li>
+<li>Bei Missbrauch (z. B. Weitergabe, automatisiertes Raten von Codes) können Codes und Ränge entzogen werden.</li>
+<li>${ph('Falls Ränge gegen Entgelt angeboten werden: Preise, Zahlungsabwicklung und Widerrufsbelehrung für digitale Inhalte ergänzen')}</li>
+</ul>
+<h3>§ 5 Verfügbarkeit</h3>
+<p>Wir bemühen uns um einen möglichst unterbrechungsfreien Betrieb, schulden aber keine ständige Verfügbarkeit. Wartungen, Updates, technische Störungen und Rücksetzungen (Rollbacks) sind möglich. Ein Anspruch auf Wiederherstellung von Spielständen, Items oder Fortschritt besteht nicht.</p>
+<h3>§ 6 Haftung</h3>
+<p>Wir haften unbeschränkt bei Vorsatz und grober Fahrlässigkeit, bei Verletzung von Leben, Körper oder Gesundheit sowie nach dem Produkthaftungsgesetz. Bei leicht fahrlässiger Verletzung wesentlicher Vertragspflichten ist die Haftung auf den vorhersehbaren, typischen Schaden begrenzt. Im Übrigen ist die Haftung ausgeschlossen.</p>
+<h3>§ 7 Änderungen</h3>
+<p>Wir können diese Bedingungen mit Wirkung für die Zukunft ändern, wenn dies sachlich gerechtfertigt ist. Änderungen werden auf dieser Seite und/oder auf Discord bekanntgegeben.</p>
+<h3>§ 8 Schlussbestimmungen</h3>
+<p>Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts; zwingende Verbraucherschutzvorschriften des Aufenthaltsstaates bleiben unberührt. Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen unberührt.</p>`,
+                en: `
+<h2>Terms and Conditions (AGB)</h2>
+<p class="meta">Last updated: ${F('updated')}</p>
+<h3>§ 1 Scope and provider</h3>
+<p>These terms apply to the use of the Minecraft server “MEJT” (mejt.bunix.de), this website and related community services. The provider is ${F('name')}, ${F('street')}, ${F('city')} (“we”). MEJT is an unofficial fan service and not associated with Mojang Studios or Microsoft.</p>
+<h3>§ 2 Participation and whitelist</h3>
+<p>Playing on the server requires being added to the whitelist via Discord or Signal. There is no legal entitlement to be whitelisted. Use is free of charge unless stated otherwise. Minors need their guardians' consent. ${ph('set a minimum age, e.g. 13')}</p>
+<h3>§ 3 Rules and conduct</h3>
+<p>The <a href="${RULES_URL}" target="_blank" rel="noopener">server rules</a> apply. In case of violations we may issue warnings, temporarily or permanently ban players and remove them from the whitelist. Cheating, harassment, hate speech, bug abuse and unlawful content are prohibited.</p>
+<h3>§ 4 Ranks (VIP / MVP) and voucher codes</h3>
+<ul>
+<li>Ranks only unlock cosmetic or convenience benefits on the server. There is no entitlement to specific content or its permanent availability; we may reasonably adjust benefits.</li>
+<li>Voucher codes can only be redeemed through the form on this website or in-game, are valid only to the stated extent (e.g. single use), are non-transferable, have no cash value and are not paid out.</li>
+<li>In case of abuse (e.g. sharing, automated guessing of codes) codes and ranks may be revoked.</li>
+<li>${ph('If ranks are sold for money: add prices, payment handling and withdrawal information for digital content')}</li>
+</ul>
+<h3>§ 5 Availability</h3>
+<p>We aim for uninterrupted operation but do not owe permanent availability. Maintenance, updates, technical faults and rollbacks are possible. There is no entitlement to restoration of worlds, items or progress.</p>
+<h3>§ 6 Liability</h3>
+<p>We are fully liable for intent and gross negligence, for injury to life, body or health, and under the Product Liability Act. For slightly negligent breach of essential contractual obligations, liability is limited to foreseeable, typical damage. Otherwise liability is excluded.</p>
+<h3>§ 7 Changes</h3>
+<p>We may amend these terms with effect for the future where objectively justified. Changes will be announced on this page and/or on Discord.</p>
+<h3>§ 8 Final provisions</h3>
+<p>German law applies, excluding the UN Convention on Contracts for the International Sale of Goods; mandatory consumer protection rules of your country of residence remain unaffected. If any provision is invalid, the remaining provisions stay valid.</p>`
+            },
+
+            datenschutz: {
+                label: { en: 'Privacy', de: 'Datenschutz' },
+                de: `
+<h2>Datenschutzerklärung</h2>
+<p class="meta">Stand: ${F('updated')}</p>
+<h3>1. Verantwortlicher</h3>
+<p>${ADDR}<br>E-Mail: ${MAIL}</p>
+<h3>2. Hosting über GitHub Pages</h3>
+<p>Diese Website wird über GitHub Pages bereitgestellt (GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA, ein Unternehmen der Microsoft-Gruppe). Beim Aufruf werden technisch notwendige Daten, insbesondere deine IP-Adresse sowie Datum, Uhrzeit und aufgerufene Ressource, in Server-Logfiles verarbeitet. Eine Übermittlung in die USA ist möglich; GitHub stützt diese auf den EU-US Data Privacy Framework bzw. Standardvertragsklauseln. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sicherer und effizienter Betrieb der Website).</p>
+<h3>3. Schriftarten (Google Fonts)</h3>
+<p>Zur Darstellung nutzt diese Seite die Schriftarten „Orbitron“ und „Outfit“, die beim Aufruf von Servern der Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irland) geladen werden. Dabei wird deine IP-Adresse an Google übermittelt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. ${ph('entfällt, sobald die Schriften lokal eingebunden sind')}</p>
+<h3>4. Lokale Speicherung im Browser</h3>
+<p>Wir speichern deine gewählte Sprache („mejt_lang“) im lokalen Speicher deines Browsers. Das ist technisch erforderlich, um deine Einstellung zu merken (§ 25 Abs. 2 Nr. 2 TDDDG), enthält keine personenbezogenen Daten und wird nicht an uns übermittelt. Wir setzen keine Tracking- oder Werbe-Cookies ein und nutzen keine Analyse-Tools.</p>
+<h3>5. Einlösen von Gutscheincodes</h3>
+<p>Wenn du einen Code einlöst, verarbeiten wir deinen eingegebenen Minecraft-Namen, den Code, den freigeschalteten Rang und den Zeitpunkt, um dir den Rang zuzuweisen und Missbrauch zu verhindern. Die Daten werden in einer Datenbank von Google (Firebase / Cloud Firestore, Google Ireland Limited bzw. Google LLC, USA) gespeichert ${ph('Region der Datenbank eintragen, z. B. eur3 (EU)')}. Zusätzlich kann unser Team per Discord-Benachrichtigung (Discord Inc., USA) informiert werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b bzw. f DSGVO. Wir löschen Einlösungen, sobald der Rang vergeben wurde, spätestens nach ${ph('z. B. 90 Tagen')}.</p>
+<h3>6. Admin-Login (nur Team)</h3>
+<p>Für Teammitglieder gibt es einen Login über Google (Firebase Authentication). Dabei werden Kontodaten wie E-Mail-Adresse verarbeitet. Besucher der Website können und müssen sich nicht anmelden.</p>
+<h3>7. Externe Links</h3>
+<p>Beim Klick auf Links zu Discord, Signal oder Google Sites gelten die Datenschutzerklärungen der jeweiligen Anbieter; mit dem Klick werden Daten (z. B. deine IP-Adresse) an diese übermittelt.</p>
+<h3>8. Minecraft-Server</h3>
+<p>${ph('Bitte ergänzen: Beim Spielen auf dem Server verarbeitest du bzw. der Server z. B. Minecraft-Name, UUID, IP-Adresse, Spielstände sowie Chat- und Befehlsprotokolle. Zweck, Rechtsgrundlage (z. B. Art. 6 Abs. 1 lit. b/f DSGVO) und Speicherdauer angeben.')}</p>
+<h3>9. Deine Rechte</h3>
+<p>Du hast das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO). Erteilte Einwilligungen kannst du jederzeit widerrufen (Art. 7 Abs. 3). Du kannst dich außerdem bei einer Datenschutz-Aufsichtsbehörde beschweren (Art. 77 DSGVO), z. B. ${ph('zuständige Landesdatenschutzbehörde')}. Schreibe uns dafür einfach an ${MAIL}.</p>`,
+                en: `
+<h2>Privacy Policy</h2>
+<p class="meta">Last updated: ${F('updated')}</p>
+<h3>1. Controller</h3>
+<p>${ADDR}<br>Email: ${MAIL}</p>
+<h3>2. Hosting via GitHub Pages</h3>
+<p>This website is served via GitHub Pages (GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA, a Microsoft company). When you visit, technically necessary data, in particular your IP address plus date, time and requested resource, is processed in server log files. A transfer to the USA is possible; GitHub relies on the EU-US Data Privacy Framework or standard contractual clauses. Legal basis: Art. 6(1)(f) GDPR (secure and efficient operation of the website).</p>
+<h3>3. Fonts (Google Fonts)</h3>
+<p>This site uses the fonts “Orbitron” and “Outfit”, which are loaded from servers of Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Ireland). Your IP address is transmitted to Google in the process. Legal basis: Art. 6(1)(f) GDPR. ${ph('remove once fonts are hosted locally')}</p>
+<h3>4. Local storage in your browser</h3>
+<p>We store your chosen language (“mejt_lang”) in your browser's local storage. This is technically necessary to remember your setting (§ 25 (2) no. 2 TDDDG), contains no personal data and is not sent to us. We use no tracking or advertising cookies and no analytics tools.</p>
+<h3>5. Redeeming voucher codes</h3>
+<p>When you redeem a code, we process the Minecraft name you entered, the code, the unlocked rank and the time, in order to assign your rank and prevent abuse. The data is stored in a Google database (Firebase / Cloud Firestore, Google Ireland Limited or Google LLC, USA) ${ph('enter database region, e.g. eur3 (EU)')}. Our team may additionally be notified via Discord (Discord Inc., USA). Legal basis: Art. 6(1)(b) or (f) GDPR. We delete redemptions once the rank has been granted, at the latest after ${ph('e.g. 90 days')}.</p>
+<h3>6. Admin login (team only)</h3>
+<p>Team members can sign in via Google (Firebase Authentication), which processes account data such as the email address. Visitors cannot and do not need to sign in.</p>
+<h3>7. External links</h3>
+<p>When you click links to Discord, Signal or Google Sites, the privacy policies of those providers apply; data (e.g. your IP address) is transmitted to them when you click.</p>
+<h3>8. Minecraft server</h3>
+<p>${ph('Please add: While playing on the server, data such as Minecraft name, UUID, IP address, game data as well as chat and command logs may be processed. State purpose, legal basis (e.g. Art. 6(1)(b)/(f) GDPR) and retention period.')}</p>
+<h3>9. Your rights</h3>
+<p>You have the right of access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction of processing (Art. 18), data portability (Art. 20) and objection (Art. 21 GDPR). You may withdraw consent at any time (Art. 7(3)). You may also lodge a complaint with a supervisory authority (Art. 77 GDPR), e.g. ${ph('competent state data protection authority')}. Just email us at ${MAIL}.</p>`
+            }
+        };
+
+        const legalModal = document.getElementById('legal-modal');
+        const legalBody = document.getElementById('legal-body');
+        const legalTabs = document.getElementById('legal-tabs');
+        let legalKey = null;
+
+        function renderLegal() {
+            if (!legalKey) return;
+            legalTabs.replaceChildren(...Object.keys(LEGAL).map(k => mk('button', {
+                class: 'adm-tab' + (k === legalKey ? ' active' : ''), text: LEGAL[k].label[currentLang] || LEGAL[k].label.en,
+                onclick: () => openLegal(k)
+            })));
+            // Inhalt ist fest im Code hinterlegt (kein Nutzerinput) -> innerHTML ist hier unkritisch.
+            legalBody.innerHTML = LEGAL[legalKey][currentLang] || LEGAL[legalKey].de;
+            legalBody.scrollTop = 0;
+        }
+        function openLegal(key) {
+            if (!LEGAL[key]) return;
+            legalKey = key;
+            renderLegal();
+            if (!legalModal.open) legalModal.showModal();
+            try { history.replaceState(null, '', '#' + key); } catch (e) {}
+        }
+        function refreshLegal() { if (legalModal.open) renderLegal(); }
+
+        document.querySelectorAll('[data-legal]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openLegal(a.dataset.legal); }));
+        document.getElementById('legal-close').addEventListener('click', () => legalModal.close());
+        legalModal.addEventListener('click', e => { if (e.target === legalModal) legalModal.close(); });
+        legalModal.addEventListener('close', () => { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} });
+        window.addEventListener('hashchange', () => { const k = location.hash.slice(1); if (LEGAL[k]) openLegal(k); });
+        if (LEGAL[location.hash.slice(1)]) openLegal(location.hash.slice(1));
+
+        document.addEventListener('DOMContentLoaded', () => { updateLanguageUI(); setupStaticReveals(); });
+    </script>
+</body>
+</html>

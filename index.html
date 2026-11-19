@@ -782,7 +782,6 @@
     window.MEJT_HERO = [
       "assets/spawn.png",
       "assets/videos/tree.mp4",
-      "assets/mascot.png",
       "assets/videos/moon.mp4",
       "assets/videos/river.mp4",
       "assets/videos/srimp.mp4",
@@ -1004,7 +1003,7 @@
                 v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.preload = 'metadata';
                 v.setAttribute('muted', ''); v.setAttribute('aria-label', label || '');
                 v.addEventListener('error', () => {
-                    const i = document.createElement('img'); i.className = cls || ''; i.alt = label || '';
+                    const i = document.createElement('img'); i.className = v.className; i.alt = label || '';
                     i.src = placeholderImg(label || 'Video'); v.replaceWith(i);
                 });
                 return v;
@@ -1294,22 +1293,49 @@
             onScroll();
         })();
 
-        /* Hero: Bilder/Videos überblenden (Liste: window.MEJT_HERO) */
+        /* Hero: Bilder/Videos überblenden (Liste: window.MEJT_HERO)
+           Bilder bleiben 5 s, Videos laufen EINMAL von vorn bis zum Ende, dann geht es weiter. */
         (function () {
             const box = document.getElementById('hero-shots');
             if (!box) return;
-            const els = (window.MEJT_HERO || []).map(src => { const e = mediaEl(src, 'MEJT Lobby', ''); box.appendChild(e); return e; });
-            if (!els.length) return;
-            let cur = 0;
+            (window.MEJT_HERO || []).forEach(src => {
+                const e = mediaEl(src, 'MEJT Lobby', '');
+                if (e.tagName === 'VIDEO') {
+                    e.loop = false; e.autoplay = false; e.removeAttribute('loop'); e.removeAttribute('autoplay');
+                    e.addEventListener('ended', () => { if (slides()[cur] === e) go(); });
+                }
+                box.appendChild(e);
+            });
+            const slides = () => [...box.children];
+            let cur = 0, timer = null;
+            const IMAGE_MS = 5000, VIDEO_MAX_MS = 60000;   // VIDEO_MAX_MS = Sicherheitsnetz, falls ein Video hängt
+
             function show(n) {
-                els.forEach((e, k) => {
+                slides().forEach((e, k) => {
                     e.classList.toggle('on', k === n);
-                    if (e.tagName === 'VIDEO') { if (k === n && !reduceMotion) e.play().catch(() => {}); else e.pause(); }
+                    if (e.tagName !== 'VIDEO') return;
+                    if (k === n && !reduceMotion) { try { e.currentTime = 0; } catch (_) {} e.play().catch(() => {}); }
+                    else e.pause();
                 });
             }
+            function schedule() {
+                clearTimeout(timer);
+                const e = slides()[cur];
+                if (!e) return;
+                timer = setTimeout(go, e.tagName === 'VIDEO' ? VIDEO_MAX_MS : IMAGE_MS);
+            }
+            function go() {
+                const n = slides().length;
+                if (n < 2) return;
+                cur = (cur + 1) % n;
+                show(cur); schedule();
+            }
+
+            const first = slides();
+            if (!first.length) return;
+            if (first.length === 1 && first[0].tagName === 'VIDEO') first[0].loop = true;   // einzelnes Video: Dauerschleife
             show(0);
-            if (els.length < 2 || reduceMotion) return;
-            setInterval(() => { cur = (cur + 1) % els.length; show(cur); }, 5000);
+            if (first.length > 1 && !reduceMotion) schedule();
         })();
 
         /* ======================= 10. FIREBASE (GOOGLE) + ADMIN PANEL ======================= */

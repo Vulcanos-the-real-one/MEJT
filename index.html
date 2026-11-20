@@ -780,7 +780,6 @@
          ========================================================================== -->
     <script>
     window.MEJT_HERO = [
-      "assets/spawn.png",
       "assets/videos/tree.mp4",
       "assets/videos/moon.mp4",
       "assets/videos/river.mp4",
@@ -1003,6 +1002,7 @@
                 v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.preload = 'metadata';
                 v.setAttribute('muted', ''); v.setAttribute('aria-label', label || '');
                 v.addEventListener('error', () => {
+                    if (v.parentElement && v.parentElement.id === 'hero-shots') return;   // Hero räumt selbst auf
                     const i = document.createElement('img'); i.className = v.className; i.alt = label || '';
                     i.src = placeholderImg(label || 'Video'); v.replaceWith(i);
                 });
@@ -1299,7 +1299,16 @@
             const box = document.getElementById('hero-shots');
             if (!box) return;
             (window.MEJT_HERO || []).forEach(src => {
-                const e = mediaEl(src, 'MEJT Lobby', '');
+                let e;
+                if (isVid(src)) e = mediaEl(src, 'MEJT Lobby', '');
+                else { e = document.createElement('img'); e.alt = 'MEJT Lobby'; e.src = src; }
+                // Datei fehlt/kaputt -> Folie leise entfernen (statt Platzhalter mit Text)
+                e.addEventListener('error', () => {
+                    const wasCur = slides()[cur] === e;
+                    e.remove();
+                    if (cur >= slides().length) cur = 0;
+                    if (wasCur) { show(cur); schedule(); }
+                }, { once: true });
                 if (e.tagName === 'VIDEO') {
                     e.loop = false; e.autoplay = false; e.removeAttribute('loop'); e.removeAttribute('autoplay');
                     e.addEventListener('ended', () => { if (slides()[cur] === e) go(); });
